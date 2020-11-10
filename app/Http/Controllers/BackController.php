@@ -5,6 +5,7 @@ use DB;
 use File;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\FormMapRequest;
 use App\User;
 use App\Model\UserLevel;
 use App\Model\System;
@@ -97,10 +98,10 @@ class BackController extends Controller
         }
  
     }
+
     public function staff_edit(Request $request, $id){
 
         $User = User::find($id);
-
 
         $UserLevel = UserLevel::where('status',1)->get();   
         return view('back.staff.edit', compact('User','UserLevel'));
@@ -265,13 +266,13 @@ class BackController extends Controller
         $Patient->fullname = $request->fullname;
         $Patient->quequan = $request->quequan;
         $Patient->ghichu = $request->ghichu;
+
         $Flag = $Patient -> save();
         if ($Flag == true) {
             return redirect('admin/patient/list/')->with(['flash_level' => 'success', 'flash_message' => 'Chỉnh Sửa Thông Tin Bệnh Nhân Thành Công']);
         } else {
             return redirect('admin/patient/edit/'.$id)->with(['flash_level' => 'danger', 'flash_message' => 'Chỉnh Sửa Thông Tin Bệnh Nhân Thất Bại']);
         }
-
     }
 
     public function patient_delete(Request $request, $id){
@@ -310,8 +311,16 @@ class BackController extends Controller
         }
     }
 
-    public function patient_map(Request $request){
+    public function map_list(){
+        $Boxmap = DB::table('boxmaps as a')
+        ->join('patient as b','a.patient_id','=','b.RowID')
+        ->selectRaw('a.id,  a.title, a.description, a.lng, a.lat, b.fullname')->get();
 
+        return view('back.map.list', compact('Boxmap'));
+    }
+
+    public function map_add(){
+        $Patient = Patient::get();   
         $boxmap = Boxmap::all();
        
         $dataMap  = Array();
@@ -327,15 +336,56 @@ class BackController extends Controller
                 array_push($dataMap['features'],$feaures);
  
        }
-
-        return view('back.patient.map')->with('dataArray',json_encode($dataMap));
+        return View('back.map.add', compact('Patient'))->with('dataArray',json_encode($dataMap));
     }
 
-    public function patient_map_post(FormMapRequest $request)
-    {
-       $validated = $request->validated();
-       Boxmap::create($request->all());
-       return redirect('back/patient/map')->with('success',"Add map success!");
+    public function map_add_post(FormMapRequest $request){
+        
+        $validated = $request->validated();
+        $Boxmap = new Boxmap;
+        $Boxmap->patient_id = $request->patient_id;
+        $Boxmap->title = $request->title;
+        $Boxmap->description = $request->description;
+        $Boxmap->lng = $request->lng;
+        $Boxmap->lat = $request->lat;
+        
+        $Flag = $Boxmap -> save();
+       return redirect('admin/map/add/')->with('success',"Add map success!");
+ 
+    }
+
+    public function map_edit(Request $request, $id){
+        $Patient = Patient::get(); 
+        $Boxmap = Boxmap::find($id);
+        $boxmap = Boxmap::all();
+       
+        $dataMap  = Array();
+        $dataMap['type']='FeatureCollection';
+        $dataMap['features']=array();
+       foreach($boxmap as $value){
+                $feaures = array();
+                $feaures['type']='Feature';
+                $geometry = array("type"=>"Point","coordinates"=>[$value->lng, $value->lat]);
+                $feaures['geometry']=$geometry;
+                $properties=array('title'=>$value->title,"description"=>$value->description);
+                $feaures['properties']= $properties;
+                array_push($dataMap['features'],$feaures);
+ 
+       }
+        return view('back.map.edit', compact('Boxmap'))->with('dataArray',json_encode($dataMap));;
+    }
+
+    public function map_edit_post(FormMapRequest $request, $id){
+        $Boxmap = Boxmap::find($id);
+        $validated = $request->validated();
+        $Boxmap->patient_id = $request->patient_id;
+        $Boxmap->title = $request->title;
+        $Boxmap->description = $request->description;
+        $Boxmap->lng = $request->lng;
+        $Boxmap->lat = $request->lat;
+        
+        $Flag = $Boxmap -> save();
+       return redirect('admin/map/edit/'.$id)->with('success',"Add map success!");
     }
 }   
 

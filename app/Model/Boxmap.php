@@ -10,5 +10,6 @@ class Boxmap extends Model
     public $timestamps = false;
     protected  $primaryKey = 'id';
     protected $guarded = [];
-    protected $fillable = ['title', 'description', 'lng', 'lat'];
+    protected $fillable = ['title','description', 'lng', 'lat','patient_id'];
+
 }

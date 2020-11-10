@@ -28,6 +28,7 @@ class FormMapRequest extends FormRequest
             'description' => 'required',
             'lng' => 'required',
             'lat' => 'required',
+            
         ];
     }
 }

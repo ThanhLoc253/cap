@@ -64,9 +64,18 @@ Route::group(['prefix' => 'admin', 'middleware' =>'auth'], function (){
         Route::post('map/{id}','BackController@patient_map_post');
     });
 
-});
-// Route::prefix('google-map')->group(function () {
-//     Route::get('/','GoogleMapController@index')->name('google.map.index');
-//     Route::post('/post','GoogleMapController@store')->name('google.map.store');
-// });
+    Route::group(['prefix' => 'map'], function(){
+        Route::get('list','BackController@map_list');
+        Route::get('add','BackController@map_add');
+        Route::post('add','BackController@map_add_post');
+        Route::get('edit/{id}','BackController@map_edit');
 
+        Route::post('edit/{id}','BackController@map_edit_post');
+        Route::get('delete/{id}','BackController@map_delete');
+    });
+
+});
+Route::prefix('google-map')->group(function () {
+    Route::get('/','GoogleMapController@index')->name('google.map.index');
+    Route::post('/post','GoogleMapController@store')->name('google.map.store');
+});

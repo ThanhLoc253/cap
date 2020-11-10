@@ -1,6 +1,17 @@
-<!-- @extends('layouts.main') -->
+@extends('back.template.master')
+
+@section('title', 'Information Account')
+@section('heading','Chỉnh Sửa Tài Khoản')
+@section('content')
+<div class="col-md-12">
+            <!-- general form elements -->
+            <div class="card card-primary">
+              <!-- form start -->
+              <form role="form" class="form" action="{{ url('admin/map/edit/' .$Boxmap->id) }}" method="POST">
+                <div class="card-body">
+                {{ csrf_field()}}
 @section('script')
-<script>
+      <script>
         mapboxgl.accessToken = 'pk.eyJ1Ijoic2tpcHBlcmhvYSIsImEiOiJjazE2MjNqMjkxMTljM2luejl0aGRyOTAxIn0.Wyvywisw6bsheh7wJZcq3Q';
         var map = new mapboxgl.Map({
           container: 'map',
@@ -10,7 +21,7 @@
         });
         var test ='<?php echo $dataArray;?>';  //ta nhận dữ liệu từ Controller
         var dataMap = JSON.parse(test); //chuyển đổi nó về dạng mà Mapbox yêu cầu
- 
+
         // ta tạo dòng lặp để for ra các đối tượng
         dataMap.features.forEach(function(marker) {
  
@@ -28,11 +39,11 @@
     </script>
     <style>
         .marker {
-            background-image: url('public/homepage/img/virus-red.png');
+          background-image: url('/public/homepage/img/corona.webp')
         }
 </style>
 @endsection
-@section('content')
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-4">
@@ -51,32 +62,33 @@
                     </ul>
                 </div>
             @endif
-           <form action="{{route('google.map.store')}}" method="post" id="boxmap">
            {{ csrf_field()}}
+           <div class="form-group">
+                    <label for="exampleInputHvT1">Title<span class="color_red">*</span></label>
+                    <input type="text" class="form-control" name="title" value="{{$Boxmap->title}}">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Description <span class="color_red">*</span></label>
+                    <input type="text" class="form-control" name="description" value="{{$Boxmap->description}}">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputDC1">lng<span class="color_red">*</span></label>
+                    <input type="text" class="form-control" name="lng" value="{{$Boxmap->lng}}">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputSdt1">lat<span class="color_red">*</span></label>
+                    <input type="text" class="form-control" name="lat" value="{{$Boxmap->lat}}">
+                  </div>
                 <div class="form-group">
-                    <label for="title">Title</label>
-                    <input type="text" name="title" placeholder="Title" class="form-control"/>
+                    <input type="submit" name="submit" value="Edit Map" class="btn btn-success"/>
                 </div>
-                <div class="form-group">
-                    <label for="title">Description</label>
-                    <input type="text" name="description" placeholder="Description" class="form-control"/>
-                </div>
-                <div class="form-group">
-                    <label for="lat">lat</label>
-                    <input type="text" name="lat" placeholder="lat" class="form-control"/>
-                </div>
-                <div class="form-group">
-                    <label for="lng">lng</label>
-                    <input type="text" name="lng" placeholder="lng" class="form-control"/>
-                </div>
-                <div class="form-group">
-                    <input type="submit" name="submit" value="Add Map" class="btn btn-success"/>
-                </div>
-            </form>
         </div>
         <div class="col-md-8">
             <h2>Show Route Map </h2>
             <div id="map"></div>      
         </div>
+      </div>
+      </form>
     </div>
 </div>
+@stop

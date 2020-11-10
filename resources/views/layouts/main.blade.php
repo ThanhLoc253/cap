@@ -6,6 +6,7 @@
 <!-- Styles -->
 <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.4.0/mapbox-gl.js'></script>
 <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.4.0/mapbox-gl.css' rel='stylesheet' />
+<link rel="stylesheet" href="{{url('public/homepage/css/map/map.css')}}">
 <link rel="stylesheet" href="{{url('public/admin/dist/css/adminlte.css')}}">
   </head>
   <body>

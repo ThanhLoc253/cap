@@ -9,7 +9,7 @@
 
   <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.4.0/mapbox-gl.js'></script>
   <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.4.0/mapbox-gl.css' rel='stylesheet' />
-
+  <link rel="stylesheet" href="{{url('public/homepage/css/map/map.css')}}">
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
@@ -136,6 +136,14 @@
             <i class="fas fa-hospital-user"></i>
               <p>
               Patients Management
+              </p>
+            </a>
+          </li>
+          <li class="nav-item has-treeview menu-open">
+            <a href="{{url('admin/map/list')}}" class="nav-link  @yield('map')">
+            <i class="fas fa-sitemap fa-fw"></i>
+              <p>
+                Maps Management
               </p>
             </a>
           </li>

@@ -1,10 +1,27 @@
 @extends('back.template.master')
-@section('title', 'Quản Lý Bệnh Nhân')
-@section('heading','Chỉnh Sửa Thông Tin Bệnh Nhân')
-@section('patient', 'active')
+
+@section('title', 'Information Account')
+@section('heading','Thông Tin Tài Khoản')
+@section('content')
+<div class="col-md-12">
+            <!-- general form elements -->
+            <div class="card card-primary">
+              <!-- form start -->
+              <form role="form" class="form" action="{{ url('admin/map/add') }}" method="POST">
+                <div class="card-body">
+                {{ csrf_field()}}
+                <div class="form-group">
+                   <select  class="form-control" name="patient_id">
+                        @if(isset($Patient) && count($Patient) > 0)
+                        @foreach($Patient as $k => $v)
+                        <option value="{{$v->RowID}}" >  Mã Bệnh Nhân: {{$v->fullname}} </option>
+                        @endforeach
+                        @endif
+                   </select>
+                  </div>
 
 @section('script')
-<script>
+      <script>
         mapboxgl.accessToken = 'pk.eyJ1Ijoic2tpcHBlcmhvYSIsImEiOiJjazE2MjNqMjkxMTljM2luejl0aGRyOTAxIn0.Wyvywisw6bsheh7wJZcq3Q';
         var map = new mapboxgl.Map({
           container: 'map',
@@ -14,7 +31,7 @@
         });
         var test ='<?php echo $dataArray;?>';  //ta nhận dữ liệu từ Controller
         var dataMap = JSON.parse(test); //chuyển đổi nó về dạng mà Mapbox yêu cầu
- 
+
         // ta tạo dòng lặp để for ra các đối tượng
         dataMap.features.forEach(function(marker) {
  
@@ -31,27 +48,16 @@
         });
     </script>
     <style>
-        #map {
-            width: 100%;
-            height: 500px;
-        }
-
         .marker {
-            background-image: url('public/homepage/img/corona.webp');
-            background-repeat:no-repeat;
-            background-size:100%;
-            width: 50px;
-            height: 100px;
-            cursor: pointer;
+          background-image: url('/public/homepage/img/corona.webp')
         }
 </style>
 @endsection
 
-@section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-4">
-            <h2>Google Map</h2>
+            <h2>Add Patient Information</h2>
             @if (session('success'))
                 <div class="alert alert-success">
                     {{ session('success') }}
@@ -66,7 +72,7 @@
                     </ul>
                 </div>
             @endif
-           <form action="{{url('admin/patient/map/')}}" method="post" id="boxmap">
+           <form action="{{url('admin/map/add')}}" method="post" id="boxmap">
            {{ csrf_field()}}
                 <div class="form-group">
                     <label for="title">Title</label>
@@ -90,7 +96,8 @@
             </form>
         </div>
         <div class="col-md-8">
-            <h2>Show google Map</h2>
+
+            <h2>Show Route Map </h2>
             <div id="map"></div>      
         </div>
     </div>
