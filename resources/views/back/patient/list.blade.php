@@ -1,13 +1,13 @@
-@extends('back.template.master')
-@section('title', 'Quản Lý Bệnh Nhân')
-@section('heading','Danh Sách Bệnh Nhân')
-@section('patient', 'active')
+@extends('back.template.master') 
+@section('title', 'Quản Lý Bệnh Nhân') 
+@section('heading','Danh Sách Bệnh Nhân') 
+@section('patient', 'active') 
 @section('content')
 <div class="col-md-12">
     <!-- general form elements -->
-    <div class="card">  
+    <div class="card">
         <div div class="card-header">
-        <a class="btn btn-block btn-primary ad_add" href="{{url('admin/patient/add')}}" title="Them">Thêm</a>
+            <a class="btn btn-block btn-primary ad_add" href="{{url('admin/patient/add')}}" title="Them">Thêm</a>
         </div>
         <div class="card-body">
             <table id="example2" class="table table-bordered table-hover">
@@ -22,36 +22,25 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @if(isset($Patient) && count($Patient) > 0)
-                    @foreach($Patient as $k => $v)
+                    @if(isset($Patient) && count($Patient) > 0) @foreach($Patient as $k => $v)
                     <tr>
                         <td class="text_align_center">{{$k+1}}</td>
                         <td>{{$v->fullname}}</td>
                         <td class="text_align_center">
-                            @if($v->Status ==1)
-                                Đang Điều Trị
-                            @elseif($v->Status ==2)
-                                Đã Khỏi Bệnh
-                            @else
-                                Tử Vong
-                            @endif
-                        </td> 
+                            @if($v->Status ==1) Đang Điều Trị @elseif($v->Status ==2) Đã Khỏi Bệnh @else Tử Vong @endif
+                        </td>
                         <td class="text_align_center">{{$v->quequan}}</td>
                         <td class="text_align_center">{{$v->ghichu}}</td>
                         <td class="text_align_center">
                             <a href="{{url('admin/patient/edit/'.$v->RowID)}}" title="Chỉnh Sửa" class="ad_button">
-                            <i class="fas fa-user-edit"></i>
-                            </a>
-                            <a href="{{url('admin/patient/map/'.$v->RowID)}}" title="Maps" class="ad_button button_map">
-                            <i class="fas fa-map-marked-alt"></i>
+                                <i class="fas fa-user-edit"></i>
                             </a>
                             <a href="{{url('admin/patient/delete/'.$v->RowID)}}" title="Xóa" class="ad_button ad_button_delete">
-                            <i class="fas fa-user-minus"></i>
+                                <i class="fas fa-user-minus"></i>
                             </a>
                         </td>
                     </tr>
-                    @endforeach
-                    @endif
+                    @endforeach @endif
                 </tbody>
             </table>
         </div>

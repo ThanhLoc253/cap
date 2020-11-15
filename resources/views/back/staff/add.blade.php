@@ -1,7 +1,7 @@
 @extends('back.template.master')
 
-@section('title', 'Information Account')
-@section('heading','Thông Tin Tài Khoản')
+@section('title', 'Thông Tin Tài Khoản')
+@section('heading','Thêm Tài Khoản')
 @section('content')
 <div class="col-md-12">
             <!-- general form elements -->

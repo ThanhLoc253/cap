@@ -14,11 +14,12 @@ class CreateBoxmapsTable extends Migration
     public function up()
     {
         Schema::create('boxmaps', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('title');
-            $table->string('description');
-            $table->string('lng');
-            $table->string('lat');
+            $table->increments('id');
+            $table->integer('patient_id');
+            $table->string('title')->nullable();
+            $table->string('description')->nullable();;
+            $table->string('lng')->nullable();;
+            $table->string('lat')->nullable();;
             $table->timestamps();
         });
         

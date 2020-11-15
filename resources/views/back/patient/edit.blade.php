@@ -1,16 +1,16 @@
-@extends('back.template.master')
-@section('title', 'Quản Lý Bệnh Nhân')
-@section('heading','Chỉnh Sửa Thông Tin Bệnh Nhân')
-@section('patient', 'active')
+@extends('back.template.master') 
+@section('title', 'Quản Lý Bệnh Nhân') 
+@section('heading','Chỉnh Sửa Thông Tin Bệnh Nhân') 
+@section('patient', 'active') 
 @section('content')
 <div class="col-md-12">
-            <div class="card card-primary">
-              <!-- form start -->
-              <form role="form" class="form" action="{{ url('admin/patient/edit/' .$Patient->RowID) }}" method="POST">
-                <div class="card-body">
+    <div class="card card-primary">
+        <!-- form start -->
+        <form role="form" class="form" action="{{ url('admin/patient/edit/' .$Patient->RowID) }}" method="POST">
+            <div class="card-body">
                 {{ csrf_field()}}
                 <div class="form-group">
-                   <select  class="form-control" name='Status'>
+                    <select class="form-control" name='Status'>
                         <option value="1" @if($Patient->Status == 1) selected="" @endif>
                             Tình Trạng: Đang Điều Trị
                         </option>
@@ -25,22 +25,22 @@
                 <div class="form-group">
                     <label for="exampleInputHvT1">Họ và Tên<span class="color_red">*</span></label>
                     <input type="text" class="form-control" name="fullname" value="{{$Patient->fullname}}">
-                  </div>
-                  <div class="form-group">
+                </div>
+                <div class="form-group">
                     <label for="exampleInputEmail1">Quê Quán <span class="color_red">*</span></label>
                     <input type="text" class="form-control" name="quequan" value="{{$Patient->quequan}}">
-                  </div>
-                  <div class="form-group">
+                </div>
+                <div class="form-group">
                     <label for="exampleInputSdt1">Ghi Chú<span class="color_red">*</span></label>
                     <input type="text" class="form-control" name="ghichu" value="{{$Patient->ghichu}}">
-                  </div>
                 </div>
-                <!-- /.card-body -->
-                <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Chỉnh Sửa</button>
-                </div>
-              </form>
             </div>
-            <!-- /.card -->
-          </div>
+            <!-- /.card-body -->
+            <div class="card-footer">
+                <button type="submit" class="btn btn-primary">Chỉnh Sửa</button>
+            </div>
+        </form>
+    </div>
+    <!-- /.card -->
+</div>
 @stop

@@ -1,6 +1,6 @@
 @extends('back.template.master')
 
-@section('title', 'Information Account')
+@section('title', 'Thông Tin Tài Khoản')
 @section('heading','Chỉnh Sửa Tài Khoản')
 @section('content')
 <div class="col-md-12">

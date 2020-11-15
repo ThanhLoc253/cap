@@ -72,10 +72,8 @@ Route::group(['prefix' => 'admin', 'middleware' =>'auth'], function (){
 
         Route::post('edit/{id}','BackController@map_edit_post');
         Route::get('delete/{id}','BackController@map_delete');
+        Route::get('show','BackController@map_show');
     });
 
 });
-Route::prefix('google-map')->group(function () {
-    Route::get('/','GoogleMapController@index')->name('google.map.index');
-    Route::post('/post','GoogleMapController@store')->name('google.map.store');
-});
+

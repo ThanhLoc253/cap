@@ -1,6 +1,6 @@
 @extends('back.template.master')
-@section('title', 'List of doctor')
-@section('heading','List of doctor')
+@section('title', 'Thông Tin Tài Khoản')
+@section('heading','Danh Sách Quản Trị Viên')
 @section('content')
 <div class="col-md-12">
     <!-- general form elements -->
