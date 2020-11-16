@@ -14,6 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
 // Login
 Route::get('/login', 'UserController@getLogin');
 Route::post('/login', 'UserController@postLogin');
@@ -77,3 +78,5 @@ Route::group(['prefix' => 'admin', 'middleware' =>'auth'], function (){
 
 });
 
+
+Route::get('/maps', 'PageController@getmaps');

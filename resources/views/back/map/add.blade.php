@@ -78,11 +78,19 @@
                                 {{ csrf_field()}}
                                 <div class="form-group">
                                     <label for="title">Title</label>
-                                    <input type="text" name="title" placeholder="Title" class="form-control" />
+                                    <input type="text" name="title" placeholder="title" class="form-control" />
                                 </div>
                                 <div class="form-group">
                                     <label for="title">Description</label>
                                     <input type="text" name="description" placeholder="Description" class="form-control" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="title">Address</label>
+                                    <input type="text" name="Address" placeholder="Address" class="form-control" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="title">Time</label>
+                                    <input type="text" name="Time" placeholder="Time" class="form-control" />
                                 </div>
                                 <div class="form-group">
                                     <label for="lat">lat</label>

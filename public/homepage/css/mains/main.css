@@ -655,8 +655,8 @@ font size 2: 28px
 footer {
     position: relative;
     background: #ffffff;
-    margin-top: 50px;
-    height: 400px;
+    top: 150px;
+    height: 350px;
 }
 
 .flag-bottom {

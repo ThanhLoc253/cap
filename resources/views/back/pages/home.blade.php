@@ -1,14 +1,42 @@
-<html lang="en"><head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>COVID-19</title>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>@yield('title')</title>
+
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.4.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.4.0/mapbox-gl.css' rel='stylesheet' />
+    <link rel="stylesheet" href="{{url('public/homepage/css/map/map.css')}}">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{{url('public/admin/plugins/fontawesome-free/css/all.min.css')}}">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- iCheck -->
+    <link rel="stylesheet" href="{{url('public/admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
+    <!-- JQVMap -->
+    <link rel="stylesheet" href="{{url('public/admin/plugins/jqvmap/jqvmap.min.css')}}">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{{url('public/admin/dist/css/adminlte.css')}}">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="{{url('public/admin/plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
+    <!-- Daterange picker -->
+    <link rel="stylesheet" href="{{url('public/admin/plugins/daterangepicker/daterangepicker.css')}}">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="{{url('public/admin/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
+    <link rel="stylesheet" href="{{url('public/admin/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
     <link rel="stylesheet" href="{{url('public/homepage/css/bases/base.css')}}">
     <link rel="stylesheet" href="{{url('public/homepage/css/mains/main.css')}}">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&amp;display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{url('public/homepage/fonts/fontawesome-free-5.14.0-web/css/all.min.css')}}">
 </head>
-<body>
+
+<body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
         <!-- ==================================start header====================================== -->
         <header class="header">
@@ -123,302 +151,26 @@
                         <div class="header__navbar-logo"><a href="{{url('/')}}">Corona</a></div>
                     </div>
                     <ul class="header__navbar-menu">
-                        <a href="#" class="header__navbar-menu-item">Trang Chủ</a>
+                        <a href="#" class="header__navbar-menu-item ">Trang Chủ</a>
                         <a href="#" class="header__navbar-menu-item">Tin Tức</a>
-                        <a href="{{url('/maps')}}" class="header__navbar-menu-item">Bản Đồ Dịch</a>
                         <a href="#" class="header__navbar-menu-item">Văn Bản</a>
+                        <a href="{{url('/maps')}}" class="header__navbar-menu-item nav-link @yield('maps')">
+                    Bản Đồ Dịch</a>
                         <div class="header__navbar-menu-animation start-home"></div>
                     </ul>
                 </div>
             </nav>
+            @yield('content')
+            <style>
+                .mapboxgl-popup {
+                    max-width: 400px;
+                    font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+                }
+            </style>
+            @yield('script')
         </header>
-        <!-- ========================================end header================================== -->
-
-        <!-- ==================================start container=================================== -->
-        <div class="container">
-            <div class="container__page-one">
-                <div class="grid">
-                    <div class="grid__row grid__row-one">
-                        <div class="grid__column-6">
-                            <div class="difine">
-                                <h1 class="define__heading">CORONAVIRUS LÀ GÌ?</h1>
-                                <p class="define__text">Coronavirus (COVID-19) lần đầu tiên được báo cáo ở Vũ Hán, Hồ Bắc, Trung Quốc vào tháng 12 năm 2019, bùng phát sau đó đã được WHO công nhận là đại dịch. Coronavirus là một loại vi rút. Có nhiều loại khác nhau và một số gây bệnh. Một loại mới được xác định đã gây ra một đợt bùng phát bệnh đường hô hấp gần đây được gọi là COVID-19.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="grid__column-6">
-                            <div class="page-one-video">
-                                <a href="https://www.youtube.com/watch?v=5DGwOJXSxqg" target="_blank">
-                                    <img class="page-one-video-img" src="{{url('public/homepage/img/virus-video.jpg')}}" alt="video" >
-                                    <div class="page-one-video-item"><i class="far fa-play-circle" aria-hidden="true"></i></div>
-                                </a>
-                            </div>
-                            <div class="img-virus">
-                                <img src="{{url('public/homepage/img/anim-icon-virus.png')}}" alt="">
-                            </div>                         
-                            <div class="img-virus-2">
-                                <img src="{{url('public/homepage/img/anim-icon-virus.png')}}" alt="">
-                            </div>                         
-                        </div>
-                    </div>
-                  
-                </div>    
-            </div>
-
-            <!-- ========================================page 3 spreads======================================== -->
-            <div class="container__page-three">
-                <div class="grid">
-                    <div class="grid__row">
-                        <div class="grid__column-12">
-                            <div class="grid__row-three-title&quot;">
-                                <h2 class="title-row-three-1">HOW DOES CORONA VIRUS SPREAD?</h2>
-                                <h1 class="title-row-three-2">HOW IT SPREADS</h1>
-                            </div>
-                        </div>                       
-                    </div>
-                    <div class="grid__row">
-                        <div class="grid__column-4">
-                            <div class="grid__column-4-prevention">
-                                <div class="spreads__img">
-                                    <img src="{{url('public/homepage/img/spreads_human_contact.jpg')}}" alt="">
-                                </div>
-                                <div class="spreads__text">
-                                    <h2>Human Contact</h2>
-                                    <p>COVID-19 được cho là lây lan chủ yếu qua tiếp xúc gần gũi từ người sang người với các giọt đường hô hấp từ người bị nhiễm bệnh. Những người bị nhiễm coronavirus thường có các triệu chứng bệnh tật.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="grid__column-4">
-                            <div class="grid__column-4-prevention">
-                                <div class="spreads__img">
-                                    <img src="{{url('public/homepage/img/spreads_contaminated_objects.jpg')}}" alt="">
-                                </div>
-                                <div class="spreads__text">
-                                    <h2>Contaminated Objects</h2>
-                                    <p>Có thể một người có thể bị nhiễm COVID-19 bằng cách chạm vào bề mặt hoặc đồ vật có vi-rút trên đó và sau đó chạm vào miệng, mũi hoặc có thể là mắt của họ. Đây không được cho là cách lây lan chính của virus.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="grid__column-4">
-                            <div class="grid__column-4-prevention">
-                                <div class="spreads__img">
-                                    <img src="{{url('public/homepage/img/spreads_social_gathering.jpg')}}" alt="">
-                                </div>
-                                <div class="spreads__text">
-                                    <h2>Social Gathering</h2>
-                                    <p>Nếu một người bị bệnh ho hoặc hắt hơi, các giọt của họ có thể lây nhiễm sang những người xung quanh. Đó là lý do tại sao điều quan trọng là tránh tiếp xúc gần gũi với những người khác. Mọi người có thể bị nhiễm bệnh</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ========================================page 2 prevention======================================== -->
-            <div class="container__page-two">
-                <div class="grid">
-                    <div class="grid__row">
-                        <div class="grid__column-12">
-                            <div class="grid__row-two-title&quot;">
-                                <h2 class="title-row-two-1">Prevention</h2>
-                                <h1 class="title-row-two-2">Covid 19 PreventionTips</h1>
-                            </div>
-                        </div>                       
-                    </div>
-                    <div class="grid__row">
-                        <div class="grid__column-4">
-                            <div class="grid__column-4-prevention">
-                                <div class="prevention__img">
-                                    <img src="{{url('public/homepage/img/Prevention-wash.webp')}}" alt="">
-                                </div>
-                                <div class="prevention__text">
-                                    <h2>Wash Your Hand</h2>
-                                    <p>Rửa tay thường xuyên là một trong những cách tốt nhất để loại bỏ vi trùng, tránh bị bệnh và ngăn ngừa sự lây lan.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="grid__column-4">
-                            <div class="grid__column-4-prevention">
-                                <div class="prevention__img">
-                                    <img src="{{url('public/homepage/img/prevention-sanitize.webp')}}" alt="">
-                                </div>
-                                <div class="prevention__text">
-                                    <h2>Clean &amp; Disinfect</h2>
-                                    <p>Bệnh coronavirus (COVID-19) là một bệnh truyền nhiễm do một loại coronavirus mới phát hiện gây ra.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="grid__column-4">
-                            <div class="grid__column-4-prevention">
-                                <div class="prevention__img">
-                                    <img src="{{url('public/homepage/img/Prevention-mask.webp')}}" alt="">
-                                </div>
-                                <div class="prevention__text">
-                                    <h2>Use Face Mask</h2>
-                                    <p>Che miệng và mũi bằng mặt nạ và đảm bảo không có khoảng trống giữa mặt bạn và mặt nạ.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="img-virus-3">
-                        <img src="{{url('public/homepage/img/virus-pink.png')}}" alt="">
-                    </div>
-                    <div class="img-virus-2">
-                        <img src="{{url('public/homepage/img/anim-icon-virus.png')}}" alt="">
-                    </div>
-                    <div class="img-virus-4">
-                        <img src="{{url('public/homepage/img/virus2.png')}}" alt="">
-                    </div>
-                </div>
-            </div>
-            
-            <!-- ========================================page 4 wash your hand======================================== -->
-
-            <div class="container__page-four">
-                <div class="grid">
-                    <div class="grid__row">
-                        <div class="grid__column-12">
-                            <div class="grid__row-three-title&quot;">
-                                <h2 class="title-row-four-1">Wash Your Hand</h2>
-                                <h1 class="title-row-four-2">How to Wash Your Hand Properly
-                                </h1>
-                            </div>
-                        </div>                       
-                    </div>
-                    <div class="grid__row">
-                        <div class="grid__column-2">
-                            <div class="grid__column-2-wash">
-                                
-                                <div class="wash__img">
-                                    <img src="{{url('public/homepage/img/hadnwash-1.webp')}}" alt="">
-                                    <div class="wash-step">1</div>
-                                </div>
-                                <div class="wash__text">
-                                    <h2>Soap on Hand</h2>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="grid__column-2">
-                            <div class="grid__column-2-wash">
-                                <div class="wash__img">
-                                    <img src="{{url('public/homepage/img/hadnwash-2.webp')}}" alt="">
-                                    <div class="wash-step">2</div>
-                                </div>
-                                <div class="wash__text">
-                                    <h2>Palm to Palm</h2>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="grid__column-2">
-                            <div class="grid__column-2-wash">
-                                <div class="wash__img">
-                                    <img src="{{url('public/homepage/img/hadnwash-3.webp')}}" alt="">
-                                    <div class="wash-step">3</div>
-                                </div>
-                                <div class="wash__text">
-                                    <h2>Between Fingers</h2>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="grid__column-2">
-                            <div class="grid__column-2-wash">
-                                <div class="wash__img">
-                                    <img src="{{url('public/homepage/img/hadnwash-4.webp')}}" alt="">
-                                    <div class="wash-step">4</div>
-                                </div>
-                                <div class="wash__text">
-                                    <h2>Back of The Hands</h2>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="grid__column-2">
-                            <div class="grid__column-2-wash">
-                                <div class="wash__img">
-                                    <img src="{{url('public/homepage/img/hadnwash-5.webp')}}" alt="">
-                                    <div class="wash-step">5</div>
-                                </div>
-                                <div class="wash__text">
-                                    <h2>Clean with Water</h2>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="grid__column-2">
-                            <div class="grid__column-2-wash">
-                                <div class="wash__img">
-                                    <img src="{{url('public/homepage/img/hadnwash-6.webp')}}" alt="">
-                                    <div class="wash-step">6</div>
-                                </div>
-                                <div class="wash__text">
-                                    <h2>Use Towel to Dry</h2>
-                                </div>
-                            </div>
-                        </div>
-                        
-                    </div>
-                </div>
-            </div>
-            <!-- ========================================page5 symptoms======================================== -->
-            <div class="container__page-five">
-                <div class="grid">
-                    <div class="grid__row grid__row-five symptoms-row">
-                        <div class="grid__column-6 symptoms-column">
-                            <div class="symptoms-difine">
-                                <h2 class="title-row-five">Main Symptoms</h2>
-                                <h1 class="define__heading">What Are The Main Symptoms?</h1>
-                                <p class="define__text">Virus COVID-19 ảnh hưởng đến những người khác nhau theo những cách khác nhau .COVID-19 là một bệnh đường hô hấp và hầu hết những người bị nhiễm sẽ phát triển các triệu chứng nhẹ đến trung bình và hồi phục mà không cần điều trị đặc biệt. Những người có bệnh lý cơ bản và những người trên 60 tuổi có nguy cơ mắc bệnh nặng và tử vong cao hơn
-                                </p>
-
-                                <div class="grid__column-12 symptoms-other">
-                                    <div class="symptoms-other-1">
-                                        <h4>Common Symptoms Include:</h4>
-                                        <ul>
-                                            <li>
-                                                Sốt
-                                            </li>
-                                            <li>
-                                                Mệt Mỏi
-                                            </li>
-                                            <li>
-                                                Ho Khan
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="symptoms-other-2">
-                                        <h4>Other Symptoms Include:</h4>
-                                        <ul>
-                                            <li>
-                                                Hụt Hơi
-                                            </li>
-                                            <li>
-                                                Nhức Mỏi
-                                            </li>
-                                            <li>
-                                                Đau Họng
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>                   
-                        </div>
-                        <div class="grid__column-6 symptoms-column">
-                            <div class="img-symptoms">
-                                <img src="{{url('public/homepage/img/SYMPTOMS.webp')}}" alt="">
-                            </div>                        
-                        </div>
-                        <div class="img-virus-3">
-                            <img src="{{url('public/homepage/img/virus-pink.png')}}" alt="">
-                        </div>
-                        <div class="img-virus-2">
-                            <img src="{{url('public/homepage/img/anim-icon-virus.png')}}" alt="">
-                        </div>
-                    </div>
-                </div>    
-            </div>
-        </div>
-        <!-- =====================================end container================================== -->
-
-        <!-- ==================================start footer====================================== -->
-        <footer class="footer">
+                <!-- ==================================start footer====================================== -->
+                <footer class="footer">
             <div class="grid">
                 <div class="grid__row">
                     <div class="grid__column-4 left-col">
@@ -591,7 +343,7 @@
                 </div>              
             </div>
             <div class="footer__bottom">
-                <p>© 2020 Created By Lê Hoài Nam đẹp trai thanh lịch vô địch vũ trụ.</p>
+                <p>© 2020 Created By THLN Group.</p>
             </div>
             
             <div class="img-virus-4-bottom">
@@ -599,9 +351,58 @@
             </div> 
         </footer>
         <!-- ======================================end footer==================================== -->
-
     </div>
     <script src="{{url('public/homepage/js/flag.js')}}"></script>
-    <!-- <script src="./assets/js/chatbot.js"></script> -->
+    <script src="{{url('public/admin/plugins/jquery/jquery.min.js')}}"></script>
 
-</body></html>
+    <script src="{{url('public/admin/plugins/jquery-ui/jquery-ui.min.js')}}"></script>
+
+    <script>
+        $.widget.bridge('uibutton', $.ui.button)
+    </script>
+
+    <script src="{{url('public/admin/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+
+    <script src="{{url('public/admin/plugins/chart.js/Chart.min.js')}}"></script>
+
+    <script src="{{url('public/admin/plugins/sparklines/sparkline.js')}}"></script>
+
+    <script src="{{url('public/admin/plugins/jquery-knob/jquery.knob.min.js')}}"></script>
+
+    <script src="{{url('public/admin/plugins/moment/moment.min.js')}}"></script>
+    <script src="{{url('public/admin/plugins/daterangepicker/daterangepicker.js')}}"></script>
+
+    <script src="{{url('public/admin/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js')}}"></script>
+
+
+    <script src="{{url('public/admin/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script>
+
+    <script src="{{url('public/admin/dist/js/adminlte.js')}}"></script>
+
+    <script src="{{url('public/admin/dist/js/demo.js')}}"></script>
+
+
+    <script src="{{url('public/admin/plugins/datatables/jquery.dataTables.min.js')}}"></script>
+    <script src="{{url('public/admin/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
+    <script src="{{url('public/admin/plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
+    <script src="{{url('public/admin/plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
+    <script>
+        $(function() {
+            $("#example1").DataTable({
+                "responsive": true,
+                "autoWidth": false,
+            });
+            $('#example2').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "responsive": true,
+            });
+        });
+    </script>
+</body>
+
+</html>

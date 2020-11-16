@@ -303,7 +303,7 @@ class BackController extends Controller {
     public function map_list() {
         $Boxmap = DB::table('boxmaps as a')
         -> join('patient as b', 'a.patient_id', '=', 'b.RowID')
-        -> selectRaw('a.id,  a.title, a.description, a.lng, a.lat, b.fullname')
+        -> selectRaw('a.id,  a.title, a.description, a.DiaChi, a.ThoiGian, a.lng, a.lat, b.fullname')
         -> get();
 
             return view('back.map.list', compact('Boxmap'));
@@ -385,15 +385,15 @@ class BackController extends Controller {
         }
         
         
-        return view('back.map.show',compact('dataMap','Patient','patientCount'))-> with('dataArray', json_encode($dataMap));;
+        return view('back.map.show',compact('dataMap','Patient','patientCount'));
     }
 
     public function getPatientCount($Patient_id='')
     {
         $dataMap = DB::table('patient')
-            ->select('patient.RowID','patient.fullname',DB::raw("count(boxmaps.id) as jml"))
+            ->select('patient.RowID','patient.fullname','patient.quequan','patient.ghichu',DB::raw("count(boxmaps.id) as jml"))
             ->join('boxmaps','boxmaps.patient_id','=','patient.RowID')
-            ->groupBy('patient.RowID','patient.fullname');
+            ->groupBy('patient.RowID','patient.fullname','patient.quequan','patient.ghichu');
 
         if($Patient_id){
             $dataMap = $dataMap->where('boxmaps.patient_id',$Patient_id);

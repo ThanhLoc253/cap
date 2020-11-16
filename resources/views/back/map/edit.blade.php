@@ -50,8 +50,6 @@
         <form role="form" class="form" action="{{ url('admin/map/edit/' .$Boxmap->id) }}" method="POST">
             <div class="card-body">
                 {{ csrf_field()}}
-
-
                 <div class="container">
                     <div class="row justify-content-center">
                         <div class="col-md-4">
@@ -70,12 +68,20 @@
                             </div>
                             @endif {{ csrf_field()}}
                             <div class="form-group">
-                                <label for="exampleInputHvT1">Title<span class="color_red">*</span></label>
+                                <label for="exampleInputEmail1">Title <span class="color_red">*</span></label>
                                 <input type="text" class="form-control" name="title" value="{{$Boxmap->title}}">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Description <span class="color_red">*</span></label>
                                 <input type="text" class="form-control" name="description" value="{{$Boxmap->description}}">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Address <span class="color_red">*</span></label>
+                                <input type="text" class="form-control" name="DiaChi" value="{{$Boxmap->DiaChi}}">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Time <span class="color_red">*</span></label>
+                                <input type="text" class="form-control" name="ThoiGian" value="{{$Boxmap->ThoiGian}}">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputDC1">lng<span class="color_red">*</span></label>
@@ -99,4 +105,4 @@
         </form>
     </div>
 </div>
-        @stop
+@stop

@@ -85,8 +85,13 @@
         center: [108.202242, 16.053270], //lng,lat 10.818746, 106.629179
         zoom: 11
     });
-    @foreach($dataMap as $d)
-    var marker = new mapboxgl.Marker()
+	@foreach($dataMap as $d)
+	
+	var el = document.createElement('div');
+        el.className = 'marker';
+
+        //gắn marker đó tại vị trí tọa độ
+    new mapboxgl.Marker(el)
     .setLngLat(['{{$d->lng}}', '{{$d->lat}}'] )
     
     .setPopup(new mapboxgl.Popup({
@@ -97,6 +102,14 @@
     @endforeach
 </script>
 <style>
+	.marker {
+        background-image: url('/public/homepage/img/corona.webp');
+        background-repeat: no-repeat;
+        background-size: 100%;
+        width: 50px;
+        height: 100px;
+        cursor: pointer;
+    }
     #map{
         margin-left: 25%;
         margin-top: -2px;
