@@ -75,5 +75,23 @@ Route::group(['prefix' => 'admin', 'middleware' =>'auth'], function (){
         Route::get('show','BackController@map_show');
     });
 
+    //new category
+    Route::group(['prefix' => 'news_cat'], function (){
+        Route::get('list', 'BackController@news_cat_list');
+        Route::get('edit/{RowID}','BackController@news_cat_getedit');
+        Route::post('edit/{RowID}','BackController@news_cat_edit');
+    });
+
+    //news
+    Route::group(['prefix' => 'news'], function()
+    {
+        Route::get('list','BackController@news_list');
+        Route::get('add','BackController@news_getadd');
+        Route::post('add','BackController@news_add');
+        Route::get('edit/{RowID}','BackController@news_getedit');
+        Route::post('edit/{RowID}','BackController@news_edit');
+        Route::get('delete/{RowID}','BackController@news_delete');
+        Route::get('sort/{id}','BackController@news_cat_update_sort');
+    });
 });
 

@@ -3,15 +3,19 @@
 namespace App\ Http\ Controllers;
 use DB;
 use File;
-
 use Illuminate\ Http\ Request;
-use App\ Http\ Requests\ FormMapRequest;
 use App\ User;
 use App\ Model\ UserLevel;
 use App\ Model\ System;
 use App\ Model\ Page;
+
 use App\ Model\ Patient;
 use App\ Model\ Boxmap;
+use App\ Http\ Requests\ FormMapRequest;
+
+use Image;
+use App\Model\NewsCategory;
+use App\Model\News;
 
 class BackController extends Controller {
     
@@ -206,7 +210,7 @@ class BackController extends Controller {
                 return redirect('admin/system') -> with(['flash_level' => 'success', 'flash_message' => 'Chỉnh Sửa tài khoản thành công']);
     }
 
-            // page management
+    // page management
                                                             
     public function page_list() {
         $Page = Page::get();
@@ -220,23 +224,31 @@ class BackController extends Controller {
     }
 
                                                             
-    public function page_edit_post(Request $request, $id) {
-        if ($request -> Name == '' || $request -> Font == '') {
-            return redirect('admin/page/edit/'.$id) -> with(['flash_level' => 'danger', 'flash_message' => 'Vui lòng điền vào chỗ trống ']);
+    public function page_edit_post(Request $request, $id){
+        if ($request->Name == '') {
+            return redirect('admin/page/edit/' .$id)->with(['flash_level' => 'danger', 'flash_message' => 'Vui lòng
+            điền vào chỗ trống']);
         }
-            $Page = Page::find($id); 
-            $Page -> Status = $request -> Status; 
-            $Page -> Name = $request -> Name; 
-            $Page -> Font = $request -> Font; 
-            $Page -> Sort = $request -> Sort; 
-            $Flag = $Page -> save();
-                if ($Flag == true) {
-                    return redirect('admin/page/edit/'.$id) -> with(['flash_level' => 'success', 'flash_message' => 'Chỉnh Sửa Trang thành công']);
-                } else {
-                    return redirect('admin/page/edit/'.$id) -> with(['flash_level' => 'danger', 'flash_message' => 'Chỉnh Sửa Trang thất bại']);
-                }
+        $Page = Page::find($id);
+        $Page->Status = $request->Status;
+        $Page->Name = $request->Name;
+        $Page->Alias = $request->Alias;
+        $Page->Font = $request->Font;
+        $Page->Sort = $request->Sort;
+
+        $Page->MetaTitle = $request->MetaTitle;
+        $Page->MetaDescription = $request->MetaDescription;
+        $Page->MetaKeyword = $request->MetaKeyword;
+        $Page->Description = $request->Description;
+
+        $Flag = $Page -> save();
+        if ($Flag == true) {
+            return redirect('admin/page/edit/'.$id)->with(['flash_level' => 'success', 'flash_message' => 'Chỉnh Sửa Trang thành công']);
+        } else {
+            return redirect('admin/page/edit/'.$id)->with(['flash_level' => 'danger', 'flash_message' => 'Chỉnh Sửa Trang thất bại']);
+        }
     }
-            // patient------------------------------
+    // patient------------------------------
                                                                     
     public function patient_list() {
         $Patient = Patient::get();
@@ -401,4 +413,172 @@ class BackController extends Controller {
             return $dataMap->get();
     }
 
+    // patient------------------------------
+
+    // news category -------------------------------------------------//
+    public function news_cat_list(){
+        $NewsCategory = NewsCategory::where('Status',1)->get();
+
+        return view('back.news.cat_list', compact('NewsCategory'));
+    }
+    public function news_cat_getedit($RowID){
+        $NewsCategory = NewsCategory::find($RowID);
+
+        return view('back.news.cat_edit', compact('NewsCategory'));
+    }
+    public function news_cat_edit(Request $request,$RowID){
+        if ($request->Name == '') {
+            return redirect('admin/news_cat/edit/' .$RowID)->with(['flash_level' => 'danger', 'flash_message' => 'Vui lòng điền vào chỗ trống']);
+        }
+
+        $NewsCategory = NewsCategory::find($RowID);
+        $NewsCategory->Status = $request->Status;
+        $NewsCategory->Name = $request->Name;
+        $Flag = $NewsCategory->save();
+        if ($Flag == true) {
+            return redirect('admin/news_cat/edit/'.$RowID)->with(['flash_level' => 'success', 'flash_message' => 'Chỉnh Sửa danh mục tin thành công']);
+        } else {
+            return redirect('admin/news_cat/edit/'.$RowID)->with(['flash_level' => 'danger', 'flash_message' => 'Chỉnh Sửa danh mục tin thất bại']);
+        }
+        // return view('back.news.cat_edit', compact('NewsCategory'));
+    }
+    // news category -------------------------------------------------//
+
+    // news management-------------------------------------------------//
+    public function news_list(){
+        $News = DB::table('news as a')
+        ->join('news_cat as b', 'a.RowIDCat', '=', 'b.RowID')
+        ->selectRaw('a.*, b.Name as CategoryName')
+        ->orderBy('a.RowID', 'DESC')
+        ->get(); 
+        return view('back.news.list', compact('News'));
+    }
+
+    public function news_getadd(){
+        $NewsCategory = NewsCategory::get();
+
+        return view('back.news.add', compact('NewsCategory'));
+    }
+
+    public function news_add(Request $request){
+        if ($request->Name == '' || $request->Description == '') {
+            return redirect('admin/news/edit/')->with(['flash_level' => 'danger', 'flash_message' => 'Vui lòng điền vào chỗ có dấu *']);
+        }
+        $News = new News;
+        $News->RowIDCat = $request->RowIDCat;
+        $News->Status = $request->Status;
+        $News->Name = $request->Name;
+        $News->Alias = $request->Alias;
+        $News->MetaTitle = $request->MetaTitle;
+        $News->MetaDescription = $request->MetaDescription;
+        $News->MetaKeyword = $request->MetaKeyword;
+        $News->SmallDescription = $request->SmallDescription;
+        $News->Description = $request->Description;
+
+
+        if($request->hasFile('Images')){
+            $file = $request->file('Images');
+            $random_digit = rand(000000000,999999999);
+            $name = $random_digit.'-'.$file->getClientOriginalName();
+            $duoi = strtolower($file->getClientOriginalExtension());
+
+            if($duoi != 'png' && $duoi != 'jpg' && $duoi != 'jpeg' && $duoi != 'svg' && $duoi != 'webp'){
+                return back()->with(['flash_level' => 'danger', 'flash_message' => 'Phần mở rộng không được hỗ trọ']);
+            }
+
+            $file->move('images/news', $name);
+            $img = Image::make('images/news/'.$name);
+            $filePath = "images/news/".date('Ymd');
+            if(!file_exists($filePath)){
+                mkdir("images/news/".date('Ymd'),0777,true);
+            }
+            $img->fit(400,300);
+            $img->save('images/news/'.date('Ymd').'/'.$name);
+
+            if(file_exists('images/news/'.$name)){
+                unlink('images/news/'.$name);
+            }
+
+            $News->Images = date('Ymd').'/'.$name;
+        }
+        $Flag = $News -> save();
+        if ($Flag == true) {
+            return redirect('admin/news/list/')->with(['flash_level' => 'success', 'flash_message' => 'Chỉnh Sửa Trang thành công']);
+        } else {
+            return redirect('admin/news/list/')->with(['flash_level' => 'danger', 'flash_message' => 'Chỉnh Sửa Trang thất bại']);
+        }
+    }
+
+    public function news_delete(Request $request, $RowID){
+        $News = News::find($RowID);
+        
+        $Flag = $News -> delete();
+        if ($Flag == true) {
+            return redirect('admin/news/list')->with(['flash_level' => 'success', 'flash_message' => 'Xóa thành công']);
+        } else {
+            return redirect('admin/news/list')->with(['flash_level' => 'danger', 'flash_message' => 'Xóa thất bại']);
+        }
+    }
+
+    public function news_getedit(Request $request,$RowID){
+        $NewsCategory = NewsCategory::get();
+        $News = News::find($RowID);
+        return view('back.news.edit', compact('News','NewsCategory'));
+    }
+
+    public function news_edit(Request $request, $RowID){
+        if ($request->Name == '' || $request->Description == '') {
+            return redirect('admin/news/edit/'.$RowID)->with(['flash_level' => 'danger', 'flash_message' => 'Vui lòng điền vào chỗ có dấu *']);
+        }
+        $News = News::find($RowID);
+        $News->RowIDCat = $request->RowIDCat;
+        $News->Status = $request->Status;
+        $News->Name = $request->Name;
+        $News->Alias = $request->Alias;
+        $News->MetaTitle = $request->MetaTitle;
+        $News->MetaDescription = $request->MetaDescription;
+        $News->MetaKeyword = $request->MetaKeyword;
+        $News->SmallDescription = $request->SmallDescription;
+        $News->Description = $request->Description;
+
+        if($request->hasFile('Images')){
+            $file = $request->file('Images');
+            $random_digit = rand(000000000,999999999);
+            $name = $random_digit.'-'.$file->getClientOriginalName();
+            $duoi = strtolower($file->getClientOriginalExtension());
+
+            if($duoi != 'png' && $duoi != 'jpg' && $duoi != 'jpeg' && $duoi != 'svg' && $duoi != 'webp'){
+                return back()->with(['flash_level' => 'danger', 'flash_message' => 'Phần mở rộng không được hỗ trọ']);
+            }
+
+            if($News->Images != ''){
+                if(file_exists('images/news/'.$News->Images)){
+                    unlink('images/news/'.$News->Images);
+                }
+            }
+
+            $file->move('images/news', $name);
+            $img = Image::make('images/news/'.$name);
+            $filePath = "images/news/".date('Ymd');
+            if(!file_exists($filePath)){
+                mkdir("images/news/".date('Ymd'),0777,true);
+            }
+            $img->fit(400,300);
+            $img->save('images/news/'.date('Ymd').'/'.$name);
+
+            if(file_exists('images/news/'.$name)){
+                unlink('images/news/'.$name);
+            }
+
+            $News->Images = date('Ymd').'/'.$name;
+        }
+
+        $Flag = $News -> save();
+        if ($Flag == true) {
+            return redirect('admin/news/edit/'.$RowID)->with(['flash_level' => 'success', 'flash_message' => 'Chỉnh Sửa tin tức thành công']);
+        } else {
+            return redirect('admin/news/edit/'.$RowID)->with(['flash_level' => 'danger', 'flash_message' => 'Chỉnh Sửa tin tức thất bại']);
+        }
+    }
+    // news management-------------------------------------------------//
 }

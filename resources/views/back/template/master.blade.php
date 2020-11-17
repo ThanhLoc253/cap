@@ -110,7 +110,30 @@
             </a>
           </li>
           @endif
+
+          <!-- quản lí tin  -->
           <li class="nav-item has-treeview">
+            <a href="#" class="nav-link @yield('news')">
+            <i class="far fa-newspaper"></i>
+              <p>
+                Quản lí tin tức
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ url('admin/news_cat/list') }}" class="nav-link">
+                  Danh mục tin tức
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ url('admin/news/list') }}" class="nav-link">
+                  Danh sách tin tức
+                </a>
+              </li>
+            </ul>
+          </li>
+          <!-- <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
             <i class="far fa-newspaper fa-fw"></i>
               <p>
@@ -130,7 +153,7 @@
                 </a>
               </li>
             </ul>
-          </li>
+          </li> -->
           <li class="nav-item has-treeview menu-open">
             <a href="{{url('admin/patient/list')}}" class="nav-link @yield('patient')">
             <i class="fas fa-hospital-user"></i>
@@ -245,6 +268,17 @@
 <script src="{{url('public/admin/plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
 
 
+<script src="{{url('public/ckeditor4.14/ckeditor.js')}}"></script>
+
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+<script>
+  CKEDITOR.replace( 'ckeditor' ,{
+	filebrowserBrowseUrl : '{!!url("public/responsive_filemanager/filemanager/dialog.php?type=1&editor=ckeditor&fldr=")!!}',
+	filebrowserUploadUrl : '{!!url("public/responsive_filemanager/filemanager/dialog.php?type=1&editor=ckeditor&fldr=")!!}',
+	filebrowserImageBrowseUrl : '{!!url("public/responsive_filemanager/filemanager/dialog.php?type=1&editor=ckeditor&fldr=")!!}'
+  });
+</script>
+
 <!-- page script -->
 <script>
   $(function () {
@@ -263,5 +297,46 @@
     });
   });
 </script>
+
+<!-- alias  -->
+
+<!-- alias -->
+<script type="text/javascript">
+  function ChangeToSlug()
+  {
+      var title, slug;
+
+      //Lấy text từ thẻ input title
+      title = document.getElementById("title").value;
+
+      //Đổi chữ hoa thành chữ thường
+      slug = title.toLowerCase();
+
+      //Đổi ký tự có dấu thành không dấu
+      slug = slug.replace(/á|à|ả|ạ|ã|ă|ắ|ằ|ẳ|ẵ|ặ|â|ấ|ầ|ẩ|ẫ|ậ/gi, 'a');
+      slug = slug.replace(/é|è|ẻ|ẽ|ẹ|ê|ế|ề|ể|ễ|ệ/gi, 'e');
+      slug = slug.replace(/i|í|ì|ỉ|ĩ|ị/gi, 'i');
+      slug = slug.replace(/ó|ò|ỏ|õ|ọ|ô|ố|ồ|ổ|ỗ|ộ|ơ|ớ|ờ|ở|ỡ|ợ/gi, 'o');
+      slug = slug.replace(/ú|ù|ủ|ũ|ụ|ư|ứ|ừ|ử|ữ|ự/gi, 'u');
+      slug = slug.replace(/ý|ỳ|ỷ|ỹ|ỵ/gi, 'y');
+      slug = slug.replace(/đ/gi, 'd');
+      //Xóa các ký tự đặt biệt
+      slug = slug.replace(/\`|\~|\!|\@|\#|\||\$|\%|\^|\&|\*|\(|\)|\+|\=|\,|\.|\/|\?|\>|\<|'|\"|\:|\;|_/gi, '');
+      //Đổi khoảng trắng thành ký tự gạch ngang
+      slug = slug.replace(/ /gi, "-");
+      //Đổi nhiều ký tự gạch ngang liên tiếp thành 1 ký tự gạch ngang
+      //Phòng trường hợp người nhập vào quá nhiều ký tự trắng
+      slug = slug.replace(/\-\-\-\-\-/gi, '-');
+      slug = slug.replace(/\-\-\-\-/gi, '-');
+      slug = slug.replace(/\-\-\-/gi, '-');
+      slug = slug.replace(/\-\-/gi, '-');
+      //Xóa các ký tự gạch ngang ở đầu và cuối
+      slug = '@' + slug + '@';
+      slug = slug.replace(/\@\-|\-\@|\@/gi, '');
+      //In slug ra textbox có id “slug”
+      document.getElementById('slug').value = slug;
+  };
+</script>
+
 </body>
 </html>
