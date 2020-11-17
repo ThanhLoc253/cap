@@ -1,11 +1,14 @@
-@extends('back.pages.home') @section('title', 'Bản Đồ') @section('maps', 'active') @section('content')
+@extends('back.pages.home') 
+@section('title', 'Bản Đồ') 
+@section('maps', 'active') 
+@section('content')
 <style>
     .marker {
-        background-image: url('/public/homepage/img/corona.webp');
+        background-image: url('/public/homepage/img/warning.png');
         background-repeat: no-repeat;
         background-size: 100%;
-        width: 50px;
-        height: 100px;
+        width: 3rem;
+        height: 5rem;
         cursor: pointer;
     }
     
@@ -60,14 +63,14 @@
     
     .filter-gmaps {
         position: absolute;
-        z-index: 999;
+
         margin: 69px;
         /*width: 100px;*/
     }
     
     .summary-gmaps {
         position: absolute;
-        z-index: 999;
+ 
         margin-top: 121px;
         margin-left: 10px;
         width: 199px;
