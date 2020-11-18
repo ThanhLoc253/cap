@@ -11,15 +11,20 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 // Login
 Route::get('/login', 'UserController@getLogin');
 Route::post('/login', 'UserController@postLogin');
 Route::get('/logout', 'UserController@getLogout');
 
+Route::get('/', 'FrontController@home');
+Route::get('/trang-chu', 'FrontController@home');
+Route::get('/tin-tuc', 'FrontController@news');
 
+Route::get('{slug}.html', 'FrontController@slugHtml');
+Route::get('{slug}', 'FrontController@slug');
 
 
 // ADMINSTRATOR
