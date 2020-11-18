@@ -37,14 +37,23 @@
         border: 2px solid #E54646;
         border-radius: 15px;
     }
+    ::-webkit-scrollbar {
+     width: 2px;
+     background: white;
+    }
+    ::-webkit-scrollbar-thumb {
+     background-color: #E54646;
+    }
     
     .panel {
         width: 150%;
         font-size: 16px;
+        height: 42.5rem;
         margin-top: 5rem;
         border: 1px solid transparent;
         border-radius: 4px;
         box-shadow: 1px 1px 1px 2px red;
+        overflow-y: scroll;
     }
     
     .panel-title {
@@ -87,7 +96,7 @@
                 <option>Chọn Mã Bệnh Nhân</option>
                 @if(isset($Patient) && count($Patient) > 0)
                 @foreach($Patient as $k => $v)
-                <option value="{{$v->RowID}}" >  Mã Bệnh Nhân: {{$v->fullname}} </option>
+                <option value="{{$v->RowID}}" >{{$v->fullname}} </option>
                 @endforeach
                 @endif
             </select>

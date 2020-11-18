@@ -290,7 +290,7 @@ class BackController extends Controller {
     }
                         
     public function patient_add() {
-        $Patient = Patient::where('Status', 1) -> get();
+        $Patient = Patient::where('Status', 2) -> get();
             return view('back.patient.add', compact('Patient'));
     }
                                                                            
@@ -299,7 +299,7 @@ class BackController extends Controller {
             return redirect('admin/patient/add') -> with(['flash_level' => 'danger', 'flash_message' => 'Vui lòng điền vào chỗ trống ']);
         }
             $Patient = new Patient; 
-            $Patient -> Status = 1; 
+            $Patient -> Status = 2; 
             $Patient -> fullname = $request -> fullname; 
             $Patient -> quequan = $request -> quequan; 
             $Patient -> ghichu = $request -> ghichu; 

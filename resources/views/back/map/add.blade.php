@@ -34,11 +34,11 @@
 </script>
 <style>
     .marker {
-        background-image: url('/public/homepage/img/corona.webp');
+        background-image: url('/public/homepage/img/warning.png');
         background-repeat: no-repeat;
         background-size: 100%;
-        width: 50px;
-        height: 100px;
+        width: 1.5rem;
+        height: 1.5rem;
         cursor: pointer;
     }
 </style>
