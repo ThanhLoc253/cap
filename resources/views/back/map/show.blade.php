@@ -38,7 +38,7 @@
 <div class="filter-gmaps">
 	<form action="" method="GET" role="form" class="form-inline">
         <div class="form-group" placeholder="Bệnh Nhân">
-            <select class="form-control form-option" name="patient_id" >
+            <select class="form-control form-option1" name="patient_id" >
                 @if(isset($Patient) && count($Patient) > 0)
                 @foreach($Patient as $k => $v)
                 <option value="{{$v->RowID}}" >  Mã Bệnh Nhân: {{$v->fullname}} </option>
@@ -115,8 +115,8 @@
         margin-top: -2px;
         width: 75%;
     }
-    .form-option {
-        margin-left: -4rem;
+    .form-option1 {
+        margin-left: -5rem;
     }
     .table-statis {
         color: red;

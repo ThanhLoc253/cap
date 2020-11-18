@@ -28,7 +28,7 @@
             .setPopup(new mapboxgl.Popup({
                     offset: 25
                 }) // add popups
-                .setHTML('<h5>' + marker.properties.title + '</h5><p>' + marker.properties.description + '</p>'))
+                .setHTML('<h5>' + marker.properties.title + '</h5><p>' + marker.properties.description + '</p><p>' + marker.properties.ThoiGian + '</p><p>' + marker.properties.DiaChi + '</p>'))
             .addTo(map);
     });
 </script>
@@ -81,16 +81,16 @@
                                     <input type="text" name="title" placeholder="title" class="form-control" />
                                 </div>
                                 <div class="form-group">
-                                    <label for="title">Description</label>
+                                    <label for="Description">Description</label>
                                     <input type="text" name="description" placeholder="Description" class="form-control" />
                                 </div>
                                 <div class="form-group">
-                                    <label for="title">Address</label>
-                                    <input type="text" name="Address" placeholder="Address" class="form-control" />
+                                    <label for="DiaChi">Address</label>
+                                    <input type="text" name="DiaChi" placeholder="Address" class="form-control" />
                                 </div>
                                 <div class="form-group">
-                                    <label for="title">Time</label>
-                                    <input type="text" name="Time" placeholder="Time" class="form-control" />
+                                    <label for="Time">Time</label>
+                                    <input type="text" name="ThoiGian" placeholder="Time" class="form-control" />
                                 </div>
                                 <div class="form-group">
                                     <label for="lat">lat</label>
@@ -106,7 +106,6 @@
                             </form>
                         </div>
                         <div class="col-md-8">
-
                             <h2>Show Route Map </h2>
                             <div id="map"></div>
                         </div>

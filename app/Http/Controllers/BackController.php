@@ -333,7 +333,7 @@ class BackController extends Controller {
         $feaures['type'] = 'Feature';
         $geometry = array("type" => "Point", "coordinates" => [$value -> lng, $value -> lat]);
         $feaures['geometry'] = $geometry;
-        $properties = array('title' => $value -> title, "description" => $value -> description);
+        $properties = array('title' => $value -> title, "description" => $value -> description, 'ThoiGian' => $value -> ThoiGian, 'DiaChi' => $value -> DiaChi);
         $feaures['properties'] = $properties;
         array_push($dataMap['features'], $feaures);
         }
@@ -360,7 +360,7 @@ class BackController extends Controller {
             $feaures['type'] = 'Feature';
             $geometry = array("type" => "Point", "coordinates" => [$value -> lng, $value -> lat]);
             $feaures['geometry'] = $geometry;
-            $properties = array('title' => $value -> title, "description" => $value -> description);
+            $properties = array('title' => $value -> title, "description" => $value -> description, "DiaChi" => $value -> DiaChi, "ThoiGian" => $value -> ThoiGian);
             $feaures['properties'] = $properties;
             array_push($dataMap['features'], $feaures);
 

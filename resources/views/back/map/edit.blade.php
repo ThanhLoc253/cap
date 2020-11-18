@@ -28,7 +28,8 @@
             .setPopup(new mapboxgl.Popup({
                     offset: 25
                 }) // add popups
-                .setHTML('<h5>' + marker.properties.title + '</h5><p>' + marker.properties.description + '</p>'))
+                .setHTML('<h5>' + marker.properties.title + '</h5><p>' + marker.properties.description + '</p>'
+                +'<p>'+ marker.properties.DiaChi + '</p>' + '<p>' + marker.properties.ThoiGian + '</p>'))
             .addTo(map);
     });
 </script>
