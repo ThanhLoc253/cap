@@ -178,7 +178,7 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         //Thu vien hinh anh
-        Intervention\Image\ImageServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class
 
     ],
 
@@ -230,8 +230,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
         //Thu vien Hinh anh
-        'Image' => 'Intervention\Image\Facades\Image',
-
+        'Image' => Intervention\Image\Facades\Image::class
     ],
 
 ];

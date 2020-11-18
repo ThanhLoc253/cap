@@ -26,6 +26,8 @@ class FormMapRequest extends FormRequest
         return [
             'title' => 'required',
             'description' => 'required',
+            'DiaChi' => 'required',
+            'ThoiGian'=> 'required',
             'lng' => 'required',
             'lat' => 'required',
             

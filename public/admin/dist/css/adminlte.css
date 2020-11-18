@@ -579,6 +579,12 @@ mark,
 
 .ad_add {
     max-width: 100px;
+    margin: 0;
+}
+
+.ad_view {
+    max-width: 100px;
+    margin-left: 80%;
 }
 
 code {
@@ -2706,7 +2712,6 @@ textarea.form-control.is-invalid {
 }
 
 .btn {
-    display: inline-block;
     font-weight: 400;
     color: #212529;
     text-align: center;
@@ -3422,12 +3427,11 @@ fieldset:disabled a.btn {
 }
 
 .btn-block {
-    display: block;
     width: 100%;
 }
 
 .btn-block+.btn-block {
-    margin-top: 0.5rem;
+    margin-top: 0rem;
 }
 
 input[type="submit"].btn-block,

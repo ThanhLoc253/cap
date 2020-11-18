@@ -11,9 +11,16 @@
 |
 */
 
+<<<<<<< HEAD
 // Route::get('/', function () {
 //     return view('welcome');
 // });
+=======
+Route::get('/', function () {
+    return view('welcome');
+});
+
+>>>>>>> 2734cab77fb19e4d6ef4c68d5cfa9b378eb47dd0
 // Login
 Route::get('/login', 'UserController@getLogin');
 Route::post('/login', 'UserController@postLogin');
@@ -100,3 +107,5 @@ Route::group(['prefix' => 'admin', 'middleware' =>'auth'], function (){
     });
 });
 
+
+Route::get('/maps', 'PageController@getmaps');

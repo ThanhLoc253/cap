@@ -290,7 +290,7 @@ class BackController extends Controller {
     }
                         
     public function patient_add() {
-        $Patient = Patient::where('Status', 1) -> get();
+        $Patient = Patient::where('Status', 2) -> get();
             return view('back.patient.add', compact('Patient'));
     }
                                                                            
@@ -299,7 +299,7 @@ class BackController extends Controller {
             return redirect('admin/patient/add') -> with(['flash_level' => 'danger', 'flash_message' => 'Vui lòng điền vào chỗ trống ']);
         }
             $Patient = new Patient; 
-            $Patient -> Status = 1; 
+            $Patient -> Status = 2; 
             $Patient -> fullname = $request -> fullname; 
             $Patient -> quequan = $request -> quequan; 
             $Patient -> ghichu = $request -> ghichu; 
@@ -315,7 +315,7 @@ class BackController extends Controller {
     public function map_list() {
         $Boxmap = DB::table('boxmaps as a')
         -> join('patient as b', 'a.patient_id', '=', 'b.RowID')
-        -> selectRaw('a.id,  a.title, a.description, a.lng, a.lat, b.fullname')
+        -> selectRaw('a.id,  a.title, a.description, a.DiaChi, a.ThoiGian, a.lng, a.lat, b.fullname')
         -> get();
 
             return view('back.map.list', compact('Boxmap'));
@@ -333,7 +333,7 @@ class BackController extends Controller {
         $feaures['type'] = 'Feature';
         $geometry = array("type" => "Point", "coordinates" => [$value -> lng, $value -> lat]);
         $feaures['geometry'] = $geometry;
-        $properties = array('title' => $value -> title, "description" => $value -> description);
+        $properties = array('title' => $value -> title, "description" => $value -> description, 'ThoiGian' => $value -> ThoiGian, 'DiaChi' => $value -> DiaChi);
         $feaures['properties'] = $properties;
         array_push($dataMap['features'], $feaures);
         }
@@ -360,7 +360,7 @@ class BackController extends Controller {
             $feaures['type'] = 'Feature';
             $geometry = array("type" => "Point", "coordinates" => [$value -> lng, $value -> lat]);
             $feaures['geometry'] = $geometry;
-            $properties = array('title' => $value -> title, "description" => $value -> description);
+            $properties = array('title' => $value -> title, "description" => $value -> description, "DiaChi" => $value -> DiaChi, "ThoiGian" => $value -> ThoiGian);
             $feaures['properties'] = $properties;
             array_push($dataMap['features'], $feaures);
 
@@ -397,15 +397,15 @@ class BackController extends Controller {
         }
         
         
-        return view('back.map.show',compact('dataMap','Patient','patientCount'))-> with('dataArray', json_encode($dataMap));;
+        return view('back.map.show',compact('dataMap','Patient','patientCount'));
     }
 
     public function getPatientCount($Patient_id='')
     {
         $dataMap = DB::table('patient')
-            ->select('patient.RowID','patient.fullname',DB::raw("count(boxmaps.id) as jml"))
+            ->select('patient.RowID','patient.fullname','patient.quequan','patient.ghichu',DB::raw("count(boxmaps.id) as jml"))
             ->join('boxmaps','boxmaps.patient_id','=','patient.RowID')
-            ->groupBy('patient.RowID','patient.fullname');
+            ->groupBy('patient.RowID','patient.fullname','patient.quequan','patient.ghichu');
 
         if($Patient_id){
             $dataMap = $dataMap->where('boxmaps.patient_id',$Patient_id);

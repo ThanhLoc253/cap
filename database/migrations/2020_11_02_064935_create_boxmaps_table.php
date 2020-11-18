@@ -17,9 +17,11 @@ class CreateBoxmapsTable extends Migration
             $table->increments('id');
             $table->integer('patient_id');
             $table->string('title')->nullable();
-            $table->string('description')->nullable();;
-            $table->string('lng')->nullable();;
-            $table->string('lat')->nullable();;
+            $table->string('description')->nullable();
+            $table->string('DiaChi')->nullable();
+            $table->string('ThoiGian')->nullable();
+            $table->string('lng')->nullable();
+            $table->string('lat')->nullable();
             $table->timestamps();
         });
         

@@ -28,17 +28,17 @@
             .setPopup(new mapboxgl.Popup({
                     offset: 25
                 }) // add popups
-                .setHTML('<h5>' + marker.properties.title + '</h5><p>' + marker.properties.description + '</p>'))
+                .setHTML('<h5>' + marker.properties.title + '</h5><p>' + marker.properties.description + '</p><p>' + marker.properties.ThoiGian + '</p><p>' + marker.properties.DiaChi + '</p>'))
             .addTo(map);
     });
 </script>
 <style>
     .marker {
-        background-image: url('/public/homepage/img/corona.webp');
+        background-image: url('/public/homepage/img/warning.png');
         background-repeat: no-repeat;
         background-size: 100%;
-        width: 50px;
-        height: 100px;
+        width: 1.5rem;
+        height: 1.5rem;
         cursor: pointer;
     }
 </style>
@@ -78,11 +78,19 @@
                                 {{ csrf_field()}}
                                 <div class="form-group">
                                     <label for="title">Title</label>
-                                    <input type="text" name="title" placeholder="Title" class="form-control" />
+                                    <input type="text" name="title" placeholder="title" class="form-control" />
                                 </div>
                                 <div class="form-group">
-                                    <label for="title">Description</label>
+                                    <label for="Description">Description</label>
                                     <input type="text" name="description" placeholder="Description" class="form-control" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="DiaChi">Address</label>
+                                    <input type="text" name="DiaChi" placeholder="Address" class="form-control" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="Time">Time</label>
+                                    <input type="text" name="ThoiGian" placeholder="Time" class="form-control" />
                                 </div>
                                 <div class="form-group">
                                     <label for="lat">lat</label>
@@ -98,7 +106,6 @@
                             </form>
                         </div>
                         <div class="col-md-8">
-
                             <h2>Show Route Map </h2>
                             <div id="map"></div>
                         </div>
