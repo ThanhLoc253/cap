@@ -129,7 +129,7 @@
         center: [108.202242, 16.053270], //lng,lat 10.818746, 106.629179
         zoom: 11
     });
-    @foreach($dataMap as $d)
+   // @foreach($dataMap as $d)
 
     var el = document.createElement('div');
     el.className = 'marker';
@@ -144,7 +144,7 @@
             .setHTML('<h5>Tên: ' + '{{$d->title}}' + '</h5><p> Địa Chỉ: ' + '{{$d->DiaChi}}' + '</p>'+ 
             '<p> Thời gian: '+ '{{$d->ThoiGian}}'+ '</p>'+'<p>Lộ Trình di chuyển: '+'{{$d->description}}'+'</p>'))
         .addTo(map);
-    @endforeach
+    //@endforeach
 </script>
 @endsection 
 @stop
