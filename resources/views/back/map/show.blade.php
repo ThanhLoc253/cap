@@ -103,7 +103,7 @@
 </script>
 <style>
 	.marker {
-        background-image: url('/public/homepage/img/corona.webp');
+        background-image: url('/public/homepage/img/warning.png');
         background-repeat: no-repeat;
         background-size: 100%;
         width: 50px;
