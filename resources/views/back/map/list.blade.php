@@ -8,7 +8,7 @@
     <div class="card">
         <div class="card-header">
             <a class="btn btn-block btn-primary ad_add" href="{{url('admin/map/add')}}" title="Them">Thêm</a>
-            <a class="btn btn-block btn-primary ad_view" href="{{url('admin/map/show')}}" title="Xem">Xem</a>
+            <!-- <a class="btn btn-block btn-primary ad_view" href="{{url('admin/map/show')}}" title="Xem">Xem</a> -->
         </div>
         <div class="card-body">
             <table id="example2" class="table table-bordered table-hover">

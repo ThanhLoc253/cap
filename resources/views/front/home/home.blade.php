@@ -7,7 +7,7 @@
 
 <link rel="stylesheet" href="{{url('public/assets/css/main.css')}}">
     <div class="container">
-        <div class="container__page-one">
+        <div class="container__page-one"> 
             <div class="grid">
                 <div class="grid__row grid__row-one" >
                     <div class="grid__column-6" data-aos="fade-right">

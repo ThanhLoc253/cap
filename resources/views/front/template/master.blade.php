@@ -4,15 +4,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title')</title>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
-    <link rel="stylesheet" href="{{url('public/assets/css/base.css')}}">
-    <!-- <link rel="stylesheet" href="{{url('public/assets/css/main.css')}}"> -->
-    <link rel="stylesheet" href="{{url('public/assets/css/template.css')}}">
+    <!-- <link rel="stylesheet" href="{{url('public/assets/css/base.css')}}">
+    <link rel="stylesheet" href="{{url('public/assets/css/main.css')}}">-->
+    <link rel="stylesheet" href="{{url('public/assets/css/template.css')}}"> 
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{url('public/assets/fonts/fontawesome-free-5.14.0-web/css/all.min.css')}}">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
     <link rel="shortcut icon" href="{{url('images/favicon/'.$favicon->Description)}}" type="image/x-icon">
+    
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.4.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.4.0/mapbox-gl.css' rel='stylesheet' />
+    <link rel="stylesheet" href="{{url('public/homepage/css/map/map.css')}}">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{{url('public/admin/plugins/fontawesome-free/css/all.min.css')}}">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- iCheck -->
+    <link rel="stylesheet" href="{{url('public/admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
+    <!-- JQVMap -->
+    <link rel="stylesheet" href="{{url('public/admin/plugins/jqvmap/jqvmap.min.css')}}">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{{url('public/admin/dist/css/adminlte.css')}}">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="{{url('public/admin/plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
+    <!-- Daterange picker -->
+    <link rel="stylesheet" href="{{url('public/admin/plugins/daterangepicker/daterangepicker.css')}}">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="{{url('public/admin/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
+    <link rel="stylesheet" href="{{url('public/admin/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="stylesheet" href="{{url('public/assets/css/base.css')}}">
+    <link rel="stylesheet" href="{{url('public/homepage/css/mains/main.css')}}">
+    <link rel="stylesheet" href="{{url('public/homepage/fonts/fontawesome-free-5.14.0-web/css/all.min.css')}}">
 </head>
 <body>
   {!! csrf_field() !!}
@@ -140,15 +170,9 @@
                           <a href="{{url('/'.$v->Alias)}}" title="{{$v->Name}}" class="header__navbar-menu-item @yield($v->Alias)">
                           {{$v->Name}}
                           </a>
-                          
                         @endif
                       @endforeach
                       @endif
-                      <!-- <div class="start-home"></div> -->
-                      <!-- <div class="start-{{$v->Alias}}"></div> -->
-                      <!-- <div class="start-information"></div>
-                      <div class="start-map"></div>
-                      <div class="start-text"></div> -->
                       <div class="header__navbar-menu-animation"></div>
                         <!-- <a href="index.html" class="header__navbar-menu-item">Trang Chủ</a>
                         <a href="news.html" class="header__navbar-menu-item">Tin Tức</a>
@@ -164,13 +188,22 @@
                         <!-- <li><a href="#teams" class="menu-btn">Teams</a></li> -->
                         <!-- <li><a href="#contact" class="menu-btn">Contact</a></li> -->
                     </ul>
+                    
                 </div>
             </nav>
+            @yield('content')
+                <style>
+                    .mapboxgl-popup {
+                            max-width: 10000000px;
+                            font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+                        }
+                </style>
+            @yield('script')
         </header>
         <!-- ========================================end header================================== -->
 
         <!-- ==================================start container=================================== -->
-        @yield('content')
+               
         <!-- =====================================end container================================== -->
 
         <!-- ==================================start footer====================================== -->
@@ -380,5 +413,26 @@
     <script src="{{url('public/assets/js/countries.js')}}"></script>
     <script src="{{url('public/assets/js/app.js')}}"></script>
     <!-- <script src="./assets/js/chatbot.js"></script> -->
+    </script>
+    <script SameSite="None; Secure" src="https://static.landbot.io/landbot-3/landbot-3.0.0.js"></script>
+    <script>
+    var myLandbot = new Landbot.Livechat({
+        configUrl: 'https://chats.landbot.io/v3/H-755063-E077DJ6CRREG4QN7/index.json',
+    });
+    </script>
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    s1.src='https://embed.tawk.to/5fb3dbdb3e20f61525e447b2/default';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+    })();
+    </script>
+    <!--End of Tawk.to Script-->
+    
 </body>
 </html>

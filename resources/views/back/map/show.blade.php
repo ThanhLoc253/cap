@@ -50,7 +50,7 @@
 	</form>
 </div>
 <div class="summary-gmaps">
-	<div class="panel panel-primary">
+	<div class="panel1 panel-primary">
 		<div class="panel-heading">
 			<h3 class="panel-title">Thống Kê</h3>
 		</div>
@@ -117,12 +117,22 @@
     }
     .form-option1 {
         margin-left: -5rem;
+
+    }
+	::-webkit-scrollbar {
+     width: 2px;
+     background: white;
+    }
+    ::-webkit-scrollbar-thumb {
+     background-color: #E54646;
     }
     .table-statis {
         color: red;
     }
-    .panel{
+    .panel1{
         width: 120%;
+		height: 42.5rem;
+		overflow-y: scroll;
     }
 </style>
 @endsection

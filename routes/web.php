@@ -11,16 +11,16 @@
 |
 */
 
-<<<<<<< HEAD
+
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-=======
-Route::get('/', function () {
-    return view('welcome');
-});
 
->>>>>>> 2734cab77fb19e4d6ef4c68d5cfa9b378eb47dd0
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+
 // Login
 Route::get('/login', 'UserController@getLogin');
 Route::post('/login', 'UserController@postLogin');
@@ -29,9 +29,11 @@ Route::get('/logout', 'UserController@getLogout');
 Route::get('/', 'FrontController@home');
 Route::get('/trang-chu', 'FrontController@home');
 Route::get('/tin-tuc', 'FrontController@news');
+Route::get('/ban-do-dich', 'FrontController@getmaps');
 
 Route::get('{slug}.html', 'FrontController@slugHtml');
 Route::get('{slug}', 'FrontController@slug');
+
 
 
 // ADMINSTRATOR
@@ -109,3 +111,4 @@ Route::group(['prefix' => 'admin', 'middleware' =>'auth'], function (){
 
 
 Route::get('/maps', 'PageController@getmaps');
+

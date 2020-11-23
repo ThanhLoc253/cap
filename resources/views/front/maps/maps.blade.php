@@ -1,7 +1,9 @@
-@extends('back.pages.home') 
-@section('title', 'Bản Đồ') 
-@section('maps', 'active') 
+@extends('front.template.master')
+@section('title', 'Bản Đồ')
+@section('$maps->Alias','active')
 @section('content')
+    <link rel="stylesheet" href="{{url('public/assets/css/news.css')}}">
+    <link rel="stylesheet" href="{{url('public/assets/css/style.css')}}">
 <style>
     .marker {
         background-image: url('/public/homepage/img/warning.png');
