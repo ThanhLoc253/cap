@@ -11,7 +11,7 @@
 
 html{
     font-size: 62.5%;
-    line-height: 2.8rem;
+    line-height: 2.8rem !important;
     font-family: 'Roboto', sans-serif;
     box-sizing: border-box;
     background-color: #FFFFFF;

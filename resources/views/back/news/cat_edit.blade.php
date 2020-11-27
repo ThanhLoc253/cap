@@ -28,10 +28,14 @@
                
 
                 <div class="form-group">
-                    <label for="exampleInputHvT1">Tên trang<span class="color_red">*</span></label>
-                    <input type="text" class="form-control" name="Name" value="{{$NewsCategory->Name}}">
-                  </div>
-                  
+                    <label for="exampleInputHvT1">Tên danh mục<span class="color_red">*</span></label>
+                    <input type="text" class="form-control" name="Name" value="{{$NewsCategory->Name}}" id="title" onkeyup="ChangeToSlug();">
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleInputHvT1">Đường dẫn</label>
+                    <input type="text" class="form-control" name="Alias" id="slug" value="{{$NewsCategory->Alias}}">
+                </div>
                   
                 </div>
                 <!-- /.card-body -->

@@ -5,44 +5,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title')</title>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
-    <!-- <link rel="stylesheet" href="{{url('public/assets/css/base.css')}}">
-    <link rel="stylesheet" href="{{url('public/assets/css/main.css')}}">-->
-    <link rel="stylesheet" href="{{url('public/assets/css/template.css')}}"> 
+    
+
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="{{url('public/admin/plugins/fontawesome-free/css/all.min.css')}}">
+
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+
+    <link rel="stylesheet" href="{{url('public/admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
+
+    <link rel="stylesheet" href="{{url('public/admin/plugins/jqvmap/jqvmap.min.css')}}">
+
+    <link rel="stylesheet" href="{{url('public/admin/dist/css/adminlte.css')}}">
+
+    <link rel="stylesheet" href="{{url('public/admin/plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
+
+    <link rel="stylesheet" href="{{url('public/admin/plugins/daterangepicker/daterangepicker.css')}}"> -->
+    <!-- Google Font: Source Sans Pro -->
+    <!-- <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet"> -->
+    <!-- DataTables -->
+    <!-- <link rel="stylesheet" href="{{url('public/admin/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
+    <link rel="stylesheet" href="{{url('public/admin/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}"> -->
+
+
+    
+    <!-- <link rel="stylesheet" href="{{url('public/homepage/fonts/fontawesome-free-5.14.0-web/css/all.min.css')}}"> -->
+    <link rel="stylesheet" href="{{url('public/assets/css/template.css')}}">
+    <link rel="stylesheet" href="{{url('public/assets/css/base.css')}}">
+    <link rel="shortcut icon" href="{{url('images/favicon/'.$favicon->Description)}}" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{url('public/assets/fonts/fontawesome-free-5.14.0-web/css/all.min.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-
-    <link rel="shortcut icon" href="{{url('images/favicon/'.$favicon->Description)}}" type="image/x-icon">
-    
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.4.0/mapbox-gl.js'></script>
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.4.0/mapbox-gl.css' rel='stylesheet' />
     <link rel="stylesheet" href="{{url('public/homepage/css/map/map.css')}}">
-    <!-- Tell the browser to be responsive to screen width -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="{{url('public/admin/plugins/fontawesome-free/css/all.min.css')}}">
-    <!-- Ionicons -->
-    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-    <!-- iCheck -->
-    <link rel="stylesheet" href="{{url('public/admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
-    <!-- JQVMap -->
-    <link rel="stylesheet" href="{{url('public/admin/plugins/jqvmap/jqvmap.min.css')}}">
-    <!-- Theme style -->
-    <link rel="stylesheet" href="{{url('public/admin/dist/css/adminlte.css')}}">
-    <!-- overlayScrollbars -->
-    <link rel="stylesheet" href="{{url('public/admin/plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
-    <!-- Daterange picker -->
-    <link rel="stylesheet" href="{{url('public/admin/plugins/daterangepicker/daterangepicker.css')}}">
-    <!-- Google Font: Source Sans Pro -->
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-    <!-- DataTables -->
-    <link rel="stylesheet" href="{{url('public/admin/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
-    <link rel="stylesheet" href="{{url('public/admin/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
-    <link rel="stylesheet" href="{{url('public/assets/css/base.css')}}">
-    <link rel="stylesheet" href="{{url('public/homepage/css/mains/main.css')}}">
-    <link rel="stylesheet" href="{{url('public/homepage/fonts/fontawesome-free-5.14.0-web/css/all.min.css')}}">
+
+    
+
+
 </head>
 <body>
   {!! csrf_field() !!}
@@ -191,7 +193,12 @@
                     
                 </div>
             </nav>
-            @yield('content')
+            
+        </header>
+        <!-- ========================================end header================================== -->
+
+        <!-- ==================================start container=================================== -->
+        @yield('content')
                 <style>
                     .mapboxgl-popup {
                             max-width: 10000000px;
@@ -199,11 +206,6 @@
                         }
                 </style>
             @yield('script')
-        </header>
-        <!-- ========================================end header================================== -->
-
-        <!-- ==================================start container=================================== -->
-               
         <!-- =====================================end container================================== -->
 
         <!-- ==================================start footer====================================== -->
@@ -342,9 +344,9 @@
                                 <p class="social-media-text footer__text">Lê Hoài Nam
                                 </p>
                                 <div class="social-media-icon">
-                                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                                    <a href="#"><i class="fab fa-instagram"></i></a>
-                                    <a href="#"><i class="fab fa-youtube"></i></a>
+                                    <a href="https://www.facebook.com/profile.php?id=100029732933822"><i class="fab fa-facebook-f"></i></a>
+                                    <a href="https://www.instagram.com/hoainamrm"><i class="fab fa-instagram"></i></a>
+                                    <a href="https://www.youtube.com/channel/UC2pbUBTQ75P3tzNHG8XX3NQ"><i class="fab fa-youtube"></i></a>
                                 </div>
                             </div>
                             <div class="social-media">
@@ -379,7 +381,7 @@
                 </div>              
             </div>
             <div class="footer__bottom">
-                <p>© 2020 Created By Lê Hoài Nam đẹp trai thanh lịch vô địch vũ trụ.</p>
+                <p>© 2020 Created By Lê Hoài Nam.</p>
             </div>
             
             <div class="img-virus-4-bottom">
@@ -413,13 +415,17 @@
     <script src="{{url('public/assets/js/countries.js')}}"></script>
     <script src="{{url('public/assets/js/app.js')}}"></script>
     <!-- <script src="./assets/js/chatbot.js"></script> -->
-    </script>
+    
+    
+
     <script SameSite="None; Secure" src="https://static.landbot.io/landbot-3/landbot-3.0.0.js"></script>
     <script>
     var myLandbot = new Landbot.Livechat({
         configUrl: 'https://chats.landbot.io/v3/H-755063-E077DJ6CRREG4QN7/index.json',
     });
     </script>
+
+
     <!--Start of Tawk.to Script-->
     <script type="text/javascript">
     var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();

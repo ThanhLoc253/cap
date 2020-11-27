@@ -315,7 +315,7 @@
 .img-virus{
     position: absolute;
     top: 95%;
-    left: 40%;
+    left: 60%;
     -webkit-animation: spin 5s linear infinite;
     -moz-animation: spin 5s linear infinite;
     animation: spin 5s linear infinite;
@@ -324,8 +324,8 @@
 
 .img-virus-2{
     position: absolute;
-    top: 20%;
-    left: 80%;
+    top: 35%;
+    left: 65%;
     -webkit-animation: spin 7s linear infinite;
     -moz-animation: spin 7s linear infinite;
     animation: spin 7s linear infinite;
@@ -420,8 +420,8 @@
 
 .img-virus-3{
     position: absolute;
-    top: 85%;
-    left: 62%;
+    top: 59%;
+    left: 15%;
     -webkit-animation: spin 5s linear infinite;
     -moz-animation: spin 5s linear infinite;
     animation: spin 5s linear infinite;

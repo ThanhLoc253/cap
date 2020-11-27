@@ -13,33 +13,37 @@
                 <div class="grid">
                     <div class="grid__row news">
                         <div class="grid__column-6" >
+                            @if(isset($HomeNews1)&& count($HomeNews1)>0)
+                            @foreach($HomeNews1 as $k => $v)
                             <div class="news-1">
-                                <img src="{{url('public/assets/img/news1.jpg')}}" alt="" class="news-1_img">
-                                <a href="#" >
-                                    <h1 class="news-1__heading">Việt Nam kiên định thực hiện “mục tiêu kép” nhưng phải đảm bảo an toàn </h1>
+                                <img src="{{url('images/news/'.$v->Images)}}" alt="" class="news-1_img">
+                                <a href="{{url('/'.$v->Alias)}}.html" >
+                                    <h1 class="news-1__heading">{{$v->Name}}</h1>
                                 </a>
                                 
-                                <p class="news-1__text">Sáng 3/10, tại Trụ sở Chính phủ, Phó Thủ tướng Chính phủ Vũ Đức Đam, Trưởng Ban Chỉ đạo Quốc gia phòng, chống dịch COVID-19 chủ trì Hội nghị trực tuyến toàn quốc (3 cấp) của Ban Chỉ đạo Quốc gia. Tại Hội nghị, Phó Thủ tướng nhấn mạnh, chúng ta phải có giải pháp rất cụ thể, thực hiện thật nghiêm, giữ tuyệt đối an toàn, không để dịch bùng phát, đây là nhiệm vụ chính trị... Chúng ta thực hiện mục tiêu kép, phải tuyệt đối an toàn vì nếu có dịch thì mọi nỗ lực phát triển kinh tế sẽ bị ảnh hưởng nặng nề
+                                <p class="news-1__text">{{$v->SmallDescription}}
                                 </p>
                             </div>
+                            @endforeach
+                            @endif
+                            
+                            
                             <div class="news-2" data-aos="fade-up">
+                            @if(isset($HomeNews2)&& count($HomeNews2)>0)
+                            @foreach($HomeNews2 as $k => $v)
                                 <div class="news-2-infor">
-                                    <a href="#" class="news-2-infor-link">
-                                        <img src="{{url('public/assets/img/news2.jpg')}}" alt="" class="news-2-infor-img">
+                                    <a href="{{url('/'.$v->Alias)}}.html" class="news-2-infor-link">
+                                        <img src="{{url('images/news/'.$v->Images)}}" alt="" class="news-2-infor-img">
                                         <div class="fakeclass"></div>
-                                        <p class="news-2-infor-text">Tiếp tục kiểm soát chặt tại các cơ sở y tế</p>
+                                        <p class="news-2-infor-text">{{$v->Name}}</p>
                                     </a>
                                 </div>
-                                <div class="news-2-infor">
-                                    <a href="#" class="news-2-infor-link">
-                                        <img src="{{url('public/assets/img/new3.jpg')}}" alt="" class="news-2-infor-img">
-                                    </a>
-                                    <div class="fakeclass"></div>
-                                    <p class="news-2-infor-text">Có 38 vắc xin covid đang trong quá trình thử nghiệm lâm sàn</p>
-                                </div>
+                            @endforeach
+                            @endif
                             </div>
+                            
                             <div class="news-3" data-aos="fade-up">
-                                <a href="#" class="news__seemore">
+                                <a href="{{url('/danh-sach-tin')}}" class="news__seemore">
                                     <p >Xem thêm</p> 
                                 </a>
                             </div>
@@ -108,30 +112,18 @@
                            
 
                             <ul class="news-ul-list" data-aos="fade-left">
+                                @if(isset($HomeNews)&& count($HomeNews)>0)
+                                @foreach($HomeNews as $k => $v)
                                 <li>
                                     <img src="{{url('public/assets/img/li.png')}}" alt="">
-                                    <a href="#">
-                                        Kỹ thuật ECMO cứu sống hàng trăm bệnh nhân "thập tử nhất sinh" và kỳ tích BN91
+                                    <a href="{{url('/'.$v->Alias)}}.html">
+                                    {{$v->Name}}
                                     </a>
                                 </li>
-                                <li>
-                                    <img src="{{url('public/assets/img/li.png')}}" alt="">
-                                    <a href="#">
-                                        Bản tin dịch COVID-19 trong 24h: Cần cảnh giác cao độ khi mùa đông đến và làn sóng dịch trên thế giới tăng mạnh trở lại
-                                    </a>
-                                </li>
-                                <li>
-                                    <img src="{{url('public/assets/img/li.png')}}" alt="">
-                                    <a href="#">
-                                        Thủ tướng: Cho phép đặt hàng cung cấp dịch vụ xét nghiệm SARS-CoV-2
-                                    </a>
-                                </li>
-                                <li>
-                                    <img src="{{url('public/assets/img/li.png')}}" alt="">
-                                    <a href="#">
-                                        Sáng 16/10 không ca mắc COVID-19, Việt Nam chữa khỏi 1.030 bệnh nhân
-                                    </a>
-                                </li>
+                                @endforeach
+                                @endif
+
+                               
                             </ul>
                             <div class="img-virus">
                                 <img src="{{url('public/assets/img/anim-icon-virus.png')}}" alt="">
@@ -457,7 +449,27 @@
                             </div>
                             <div class="timeline-content">
                                 <ul>
+                                    @if(isset($Timeline)&& count($Timeline)>0)
+                                    @foreach($Timeline as $k => $v)
                                     <li>
+                                        <span></span>
+                                        
+                                        <div class="timeline-detail">
+                                            <div class="timeline-day">
+                                                <h3>{{$v->created_at}}</h3>
+                                            </div>
+                                            <div class="timeline-text">
+                                                <p></p>
+                                            
+                                                {!!$v->Description!!}
+                                                
+                                            </div>
+                                        </div>
+                                        
+                                    </li>
+                                    @endforeach
+                                    @endif
+                                    <!-- <li>
                                         <span></span>
                                         <div class="timeline-detail">
                                             <div class="timeline-day">
@@ -481,32 +493,7 @@
                                                 <p>Ngày 16/10/2020, các bệnh nhân BN1137-1140 từ Nga nhập cảnh Sân bay Vân Đồn trên chuyến bay VN5062, được chuyển đến cách ly tại Trung đoàn 180, Bộ Chỉ huy quân sự tỉnh Nam Định ngay sau khi nhập cảnh. Kết quả xét nghiệm ngày 18/10/2020 tại Viện Vệ sinh dịch tễ Trung ương dương tính với SARS-CoV-2. Hiện tại các bệnh nhân đang được cách ly, điều trị tại Bệnh viện Đa khoa tỉnh Nam Định.</p>
                                             </div>
                                         </div>
-                                    </li>
-                                    <li>
-                                        <span></span>
-                                        <div class="timeline-detail">
-                                            <div class="timeline-day">
-                                                <h3>17:56 19/10/2020</h3>
-                                            </div>
-                                            <div class="timeline-text">
-                                                <p></p>
-                                                <p>THÔNG BÁO VỀ 6 CA MẮC MỚI (BN1135-1140): Là các ca nhập cảnh, được cách ly ngay. Cụ thể:</p>
-                                                <p>- CA BỆNH 1135 (BN1135): nam, 40 tuổi, có địa chỉ tại xã Quân Chu, huyện Đại Từ, tỉnh Thái Nguyên. Ngày 16/10/2020, bệnh nhân từ Nga nhập cảnh Sân bay Vân Đồn trên chuyến bay VN5062, được chuyển đến cách ly tại Trung đoàn 855 thuộc Bộ Chỉ huy Quân sự tỉnh Ninh Bình ngay sau khi nhập cảnh. Lấy mẫu ngày 16/10/2020, kết quả xét nghiệm ngày 17/10/2020 tại Bệnh viện Đa khoa tỉnh Ninh Bình dương tính với SARS-CoV-2. Hiện tại bệnh nhân đang được cách ly, điều trị tại Phòng khám Đa khoa Khu vực Cầu Yên, huyện Hoa Lư, tỉnh Ninh Bình.</p>
-                                                <p>- CA BỆNH 1136 (BN1136): nữ, 32 tuổi, là chuyên gia người Pháp, vào Việt Nam làm việc tại Thành phố Hồ Chí Minh. Ngày 17/10/2020, bệnh nhân từ Dubai (UAE) nhập cảnh Sân bay Tân Sơn Nhất trên chuyến bay EK392, được chuyển đến cách ly ngay tại TP. Hồ Chí Minh. Kết quả xét nghiệm ngày 18/10/2020 tại Trung tâm Kiểm soát bệnh tật TP. Hồ Chí Minh dương tính với SARS-CoV-2. Hiện tại bệnh nhân đang được cách ly, điều trị tại Bệnh viện dã chiến Củ Chi.</p>
-                                                <p>- CA BỆNH 1137 (BN1137): nữ, 26 tuổi, có địa chỉ tại phường Yên Bắc, thị xã Duy Tiên, tỉnh Hà Nam.
-                                                <br>
-                                                - CA BỆNH 1138 (BN1138): nam, 32 tuổi, có địa chỉ tại phường Bồ Đề, quận Long Biên, Thành phố Hà Nội.
-                                                <br>
-                                                - CA BỆNH 1139 (BN1139): nam, 40 tuổi, có địa chỉ tại phường Cẩm Bình, thành phố Cẩm Phả, tỉnh Quảng Ninh.
-                                                <br>
-                                                - CA BỆNH 1140 (BN1140): nam, 36 tuổi, có địa chỉ tại xã Công Thành, huyện Yên Thành, tỉnh Nghệ An.
-                                                <br>
-
-                                                </p>
-                                                <p>Ngày 16/10/2020, các bệnh nhân BN1137-1140 từ Nga nhập cảnh Sân bay Vân Đồn trên chuyến bay VN5062, được chuyển đến cách ly tại Trung đoàn 180, Bộ Chỉ huy quân sự tỉnh Nam Định ngay sau khi nhập cảnh. Kết quả xét nghiệm ngày 18/10/2020 tại Viện Vệ sinh dịch tễ Trung ương dương tính với SARS-CoV-2. Hiện tại các bệnh nhân đang được cách ly, điều trị tại Bệnh viện Đa khoa tỉnh Nam Định.</p>
-                                            </div>
-                                        </div>
-                                    </li>
+                                    </li> -->
                                 </ul>
                             </div>
                             <div class="news-textcenter">

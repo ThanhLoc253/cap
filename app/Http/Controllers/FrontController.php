@@ -37,7 +37,7 @@ class FrontController extends Controller {
     }
     
 
-    public function slug($slug){
+    public function slug($slug, Request $request){
         // $newsCat = DB::table('news as a')
         // ->join('news_cat as b', 'a.RowIDCat', '=', 'b.RowID')
         // ->selectRaw('a.*, b.Name as CategoryName')
@@ -47,7 +47,38 @@ class FrontController extends Controller {
 
         $newsCat = Page::where('Status',1)->where('Alias',$slug)->first();
 
-        return view('front.news.cat',compact('newsCat'));
+        if(isset($newsCat)&&$newsCat != null){
+            $listNews = DB::table('news as a')
+            ->join('news_cat as b','a.RowIDCat','=','b.RowID')
+            ->where('a.Status',1)
+            ->where('b.Alias',$slug)
+            ->selectRaw('a.Alias, a.Name, a.Images, a.SmallDescription, a.created_at')
+            // ->where('a.RowIDCat',2)
+            ->paginate(4);
+
+            return view('front.news.cat',compact('newsCat','listNews'));
+        }
+
+        
+    }
+
+    public function slugHtml($slug, Request $request){
+        $newsitem = DB::table('news as a')
+        ->join('news_cat as b','a.RowIDCat','=','b.RowID')
+        ->where('a.Status',1)
+        ->where('a.Alias',$slug)
+        ->selectRaw('a.Alias, a.Name, a.Images, a.created_at, a.Description, b.Name as NewsCatName, b.Alias as NewsCatAlias')
+        // ->where('a.RowIDCat',2)
+        ->first();
+
+
+        $AddNews = DB::table('news as a')
+        ->join('news_cat as b','a.RowIDCat','=','b.RowID')
+        ->where('a.Status',1)
+        ->selectRaw('a.Alias, a.Name, a.Images')
+        ->where('a.RowIDCat',2)
+        ->limit(4)->get();
+        return view('front.news.newsitem',compact('newsitem','AddNews'));
     }
 
 
@@ -56,12 +87,44 @@ class FrontController extends Controller {
 
         $news = Page::where('Status',1)->where('Alias','tin-tuc')->first();
 
-        return view('front.news.news',compact('news'));
+        $HomeNews = DB::table('news as a')
+        ->join('news_cat as b','a.RowIDCat','=','b.RowID')
+        ->where('a.Status',1)
+        ->selectRaw('a.Alias, a.Name, a.Images, a.SmallDescription')
+        ->where('a.RowIDCat',2)
+        ->limit(4)->get();
+
+        $HomeNews1 = DB::table('news as a')
+        ->join('news_cat as b','a.RowIDCat','=','b.RowID')
+        ->where('a.Status',1)
+        ->selectRaw('a.Alias, a.Name, a.Images, a.SmallDescription')
+        ->where('a.RowIDCat',2)
+        ->limit(1)->get();
+
+        $HomeNews2 = DB::table('news as a')
+        ->join('news_cat as b','a.RowIDCat','=','b.RowID')
+        ->where('a.Status',1)
+        ->selectRaw('a.Alias, a.Name, a.Images, a.SmallDescription')
+        ->where('a.RowIDCat',2)
+        ->paginate(2);
+
+        $Timeline = DB::table('news as a')
+        ->join('news_cat as b','a.RowIDCat','=','b.RowID')
+        ->where('a.Status',1)
+        ->selectRaw('a.Alias, a.Name, a.Images, a.Description, a.created_at')
+        ->where('a.RowIDCat',1)
+        ->paginate(2);
+
+        return view('front.news.news',compact('news','HomeNews','HomeNews1','HomeNews2','Timeline'));
+    
+
+
+        // return view('front.news.news',compact('news'));
     }
 
     public function getmaps(Request $request){
 
-        $maps = Page::where('Status',1)->where('Alias','ban-do-dich')->first();
+        $getmaps = Page::where('Status',1)->where('Alias','ban-do-dich')->first();
         $input = $request->all();
         $boxmap = Boxmap::get();
         $Patient = Patient::get();
@@ -74,7 +137,7 @@ class FrontController extends Controller {
             $dataMap = Boxmap::all();    
             $patientCount = $this->getPatientCount();
         }
-        return view('front.maps.maps',compact('dataMap','Patient','patientCount','$maps'));
+        return view('front.maps.maps',compact('dataMap','Patient','patientCount','getmaps'));
     }
     
     public function getPatientCount($Patient_id='')

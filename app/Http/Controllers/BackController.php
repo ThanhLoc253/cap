@@ -434,6 +434,7 @@ class BackController extends Controller {
         $NewsCategory = NewsCategory::find($RowID);
         $NewsCategory->Status = $request->Status;
         $NewsCategory->Name = $request->Name;
+        $NewsCategory->Alias = $request->Alias;
         $Flag = $NewsCategory->save();
         if ($Flag == true) {
             return redirect('admin/news_cat/edit/'.$RowID)->with(['flash_level' => 'success', 'flash_message' => 'Chỉnh Sửa danh mục tin thành công']);

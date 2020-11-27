@@ -1,4 +1,4 @@
-.wrapper{
+/* .wrapper{
     position: relative;
 }
 
@@ -11,7 +11,6 @@
 
 .max-width{
     max-width: 1200px;
-    /* padding: 0 80px; */
     margin: 0 auto;
 }
 
@@ -97,15 +96,12 @@
     display: inline-block;
     text-align: center;
     line-height: 6rem;
-    /* background-color: red; */
 }
 
 .header__navbar-menu-animation{
     position: absolute;
     height: 5px;
     bottom: 1rem;
-    /* height: 100%;
-    top: 0; */
     z-index: 0;
     background: var(--primary-color);
     border-radius: 8px;
@@ -146,7 +142,7 @@
 .header__navbar-menu .start-text,.header__navbar-menu a:nth-child(4):hover~.header__navbar-menu-animation{
     width: 150px;
     left: 338px;
-}
+} */
 
 
 /* ========================================end header======================================== */
@@ -297,7 +293,7 @@ hr{
     color: var(--primary-color);
  }
 /* ========================================footer======================================== */
-
+/* 
 footer{
     position: relative;
     background: #ffffff;
@@ -368,7 +364,7 @@ footer{
     -moz-animation: spin 5s linear infinite;
     animation: spin 5s linear infinite;
     z-index: 1;
-}
+} */
 
 .define__heading{
     font-size: 3.4rem;
