@@ -218,8 +218,7 @@
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">
-    <strong>Copyright &copy; 2020 <a href="#">Link website</a>.</strong>
-    All rights reserved.
+    <strong>THNL-CWCOVID19 &copy; 2020</strong>
     <div class="float-right d-none d-sm-inline-block">
       <b>Version</b> 0.0.1
     </div>
