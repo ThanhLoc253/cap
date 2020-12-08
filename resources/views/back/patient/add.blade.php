@@ -19,6 +19,14 @@
                     <input type="text" class="form-control" name="quequan">
                 </div>
                 <div class="form-group">
+                    <label for="exampleInputEmail1">Tuổi <span class="color_red">*</span></label>
+                    <input type="text" class="form-control" name="Age">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Địa điểm <span class="color_red">*</span></label>
+                    <input type="text" class="form-control" name="Location">
+                </div>
+                <div class="form-group">
                     <label for="exampleInputEmail1">Ghi Chú<span class="color_red">*</span></label>
                     <input type="text" class="form-control" name="ghichu">
                 </div>

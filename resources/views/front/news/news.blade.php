@@ -31,6 +31,7 @@
                             <div class="news-2" data-aos="fade-up">
                             @if(isset($HomeNews2)&& count($HomeNews2)>0)
                             @foreach($HomeNews2 as $k => $v)
+                        
                                 <div class="news-2-infor">
                                     <a href="{{url('/'.$v->Alias)}}.html" class="news-2-infor-link">
                                         <img src="{{url('images/news/'.$v->Images)}}" alt="" class="news-2-infor-img">
@@ -154,7 +155,26 @@
                                 </thead>
                                 
                                 <tbody>
+                                @if(isset($listpatient)&& count($listpatient)>0)
+                                @foreach($listpatient as $k => $v)
                                     <tr>
+                                        <td>{{$v->fullname}}</td>                           
+                                        <td>{{$v->Age}}</td>                           
+                                        <td>{{$v->Location}}</td>
+
+                                        @if($v->Status == 1)
+                                            <td style="color:#848484;">Đang Điều Trị</td>
+                                        @elseif($v->Status == 0)
+                                            <td style="color:#FF4C4C;">Tử Vong</td>
+                                        @elseif($v->Status == 2)
+                                            <td style="color:#50C75A;">Đã Khỏi Bệnh</td>
+                                        @endif
+
+                                        <td>{{$v->quequan}}</td>                          
+                                    </tr>
+                                @endforeach
+                                @endif
+                                    <!-- <tr>
                                         <td>BN1113</td>                           
                                         <td>37</td>                           
                                         <td>Bà Rịa - Vũng Tàu</td>                          
@@ -209,14 +229,7 @@
                                         <td>Bà Rịa - Vũng Tàu</td>                          
                                         <td>Đang điều trị</td>                                                
                                         <td>Malaysia</td>                          
-                                    </tr>    
-                                    <tr>
-                                        <td>BN1113</td>                           
-                                        <td>37</td>                           
-                                        <td>Bà Rịa - Vũng Tàu</td>                          
-                                        <td>Đang điều trị</td>                                                
-                                        <td>Malaysia</td>                          
-                                    </tr>    
+                                    </tr>     -->
                                 </tbody>
                             </table> 
                         </div>                       
@@ -313,7 +326,7 @@
                         </div> -->
                         
                         <section id="features" class="features">
-                            <div class="container" data-aos="fade-up-right">
+                            <div class="container" data-aos="fade-up">
                     
                                 <div class="row">
                                     <div class="col-lg-6 order-2 order-lg-1 vertical-line" data-aos="fade-right">
@@ -443,7 +456,7 @@
                             </div>
                         </section>
 
-                        <div class="grid__column-6 timeline" data-aos="fade-up-left">
+                        <div class="grid__column-6 timeline" data-aos="fade-up">
                             <div class="timeline-heading">
                                 <h2 class="title-row-4">Diễn biến dịch</h2>
                             </div>
@@ -496,11 +509,13 @@
                                     </li> -->
                                 </ul>
                             </div>
-                            <div class="news-textcenter">
-                                <a href="#" class="news__seemore">
+                            <!-- <div class="news-textcenter">
+                                <a href="{{url('/danh-sach-tin')}}" class="news__seemore">
                                     Xem thêm
                                 </a>
-                            </div>
+                            </div> -->
+
+                            
                         </div>
                         <div class="img-virus-3">
                             <img src="{{url('public/assets/img/virus-pink.png')}}" alt="">

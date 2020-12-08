@@ -31,6 +31,14 @@
                     <input type="text" class="form-control" name="quequan" value="{{$Patient->quequan}}">
                 </div>
                 <div class="form-group">
+                    <label for="exampleInputEmail1">Tuổi <span class="color_red">*</span></label>
+                    <input type="text" class="form-control" name="Age" value="{{$Patient->Age}}">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Địa điểm <span class="color_red">*</span></label>
+                    <input type="text" class="form-control" name="Location" value="{{$Patient->Location}}">
+                </div>
+                <div class="form-group">
                     <label for="exampleInputSdt1">Ghi Chú<span class="color_red">*</span></label>
                     <input type="text" class="form-control" name="ghichu" value="{{$Patient->ghichu}}">
                 </div>

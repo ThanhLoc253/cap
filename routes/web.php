@@ -30,6 +30,9 @@ Route::get('/', 'FrontController@home');
 Route::get('/trang-chu', 'FrontController@home');
 Route::get('/tin-tuc', 'FrontController@news');
 Route::get('/ban-do-dich', 'FrontController@getmaps');
+// Route::get('/time-line', 'FrontController@timelinelist');
+
+
 
 Route::get('{slug}.html', 'FrontController@slugHtml');
 Route::get('{slug}', 'FrontController@slug');

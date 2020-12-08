@@ -16,6 +16,7 @@ use App\ Http\ Requests\ FormMapRequest;
 use Image;
 use App\Model\NewsCategory;
 use App\Model\News;
+// use App\Model\message;
 
 class BackController extends Controller {
     
@@ -65,6 +66,8 @@ class BackController extends Controller {
 
             return view('back.staff.list', compact('User'));
     }
+
+    
                  
     public function staff_add() {
             $UserLevel = UserLevel::where('status', 1) -> get();
@@ -267,7 +270,9 @@ class BackController extends Controller {
             $Patient = Patient::find($id); 
             $Patient -> Status = $request -> Status; 
             $Patient -> fullname = $request -> fullname; 
-            $Patient -> quequan = $request -> quequan; 
+            $Patient -> quequan = $request -> quequan;
+            $Patient -> Age = $request -> Age;
+            $Patient -> Location = $request -> Location; 
             $Patient -> ghichu = $request -> ghichu;
 
             $Flag = $Patient -> save();
@@ -302,6 +307,8 @@ class BackController extends Controller {
             $Patient -> Status = 2; 
             $Patient -> fullname = $request -> fullname; 
             $Patient -> quequan = $request -> quequan; 
+            $Patient -> Age = $request -> Age;
+            $Patient -> Location = $request -> Location; 
             $Patient -> ghichu = $request -> ghichu; 
             $Flag = $Patient -> save();
 

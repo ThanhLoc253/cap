@@ -285,12 +285,16 @@ footer{
     color: #001a21;
     font-size: 25px;
     margin-right: 20px;
-    transition: 0.4s;
+    /* transition: 0.4s; */
 }
 
+.social-media-icon a:hover .facebook{
+    color: #506DC7;
+    /* transition: 0.4s; */
+}
 .social-media-icon a:hover{
     color: var(--primary-color);
-    transition: 0.4s;
+    /* transition: 0.4s; */
 }
 
 .footer .footer__bottom{

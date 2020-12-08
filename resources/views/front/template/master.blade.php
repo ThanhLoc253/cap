@@ -32,6 +32,7 @@
     
     <!-- <link rel="stylesheet" href="{{url('public/homepage/fonts/fontawesome-free-5.14.0-web/css/all.min.css')}}"> -->
     <link rel="stylesheet" href="{{url('public/assets/css/template.css')}}">
+    <link rel="stylesheet" href="{{url('public/assets/css/styles.css')}}">
     <link rel="stylesheet" href="{{url('public/assets/css/base.css')}}">
     <link rel="shortcut icon" href="{{url('images/favicon/'.$favicon->Description)}}" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
@@ -159,7 +160,7 @@
                                 <img src="{{url('public/assets/img/Plain_Yellow_Star.png')}}" alt="">
                             </div>
                         </div>
-                        <div class="header__navbar-logo"><a href="#">Corona</a></div>
+                        <div class="header__navbar-logo"><a href="{{url('/')}}">Corona</a></div>
                     </div>
                     <ul class="header__navbar-menu">
                       @if(isset($Page) && count($Page)>0)
@@ -206,6 +207,38 @@
                         }
                 </style>
             @yield('script')
+
+
+
+        <!-- chatbot  -->
+
+        <div class="chat_icon">
+            <i class="fas fa-comments"></i>
+        </div>
+
+        <div class="chat_box">
+            <div class="wrapper">
+                <div class="titlechat">CWCovid Chatbot</div>
+                <div class="form">
+                    <div class="bot-inbox inbox">
+                        <div class="icon">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="msg-header">
+                            <p>Xin chào, tôi có thể giúp gì?</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="typing-field">
+                    <div class="input-data">
+                        <input id="data" type="text" placeholder="Nhập câu hỏi.." required>
+                        <button id="send-btn">Send</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- chatbot  -->
         <!-- =====================================end container================================== -->
 
         <!-- ==================================start footer====================================== -->
@@ -344,7 +377,7 @@
                                 <p class="social-media-text footer__text">Lê Hoài Nam
                                 </p>
                                 <div class="social-media-icon">
-                                    <a href="https://www.facebook.com/profile.php?id=100029732933822"><i class="fab fa-facebook-f"></i></a>
+                                    <a href="https://www.facebook.com/profile.php?id=100029732933822"><i class="fab fa-facebook-f facebook"></i></a>
                                     <a href="https://www.instagram.com/hoainamrm"><i class="fab fa-instagram"></i></a>
                                     <a href="https://www.youtube.com/channel/UC2pbUBTQ75P3tzNHG8XX3NQ"><i class="fab fa-youtube"></i></a>
                                 </div>
@@ -353,7 +386,7 @@
                                 <p class="social-media-text footer__text">Nguyễn Thành Lộc
                                 </p>
                                 <div class="social-media-icon">
-                                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                    <a href="#"><i class="fab fa-facebook-f facebook"></i></a>
                                     <a href="#"><i class="fab fa-instagram"></i></a>
                                     <a href="#"><i class="fab fa-youtube"></i></a>
                                 </div>
@@ -362,7 +395,7 @@
                                 <p class="social-media-text footer__text">Quang Trọng
                                 </p>
                                 <div class="social-media-icon">
-                                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                    <a href="#"><i class="fab fa-facebook-f facebook"></i></a>
                                     <a href="#"><i class="fab fa-instagram"></i></a>
                                     <a href="#"><i class="fab fa-youtube"></i></a>
                                 </div>
@@ -371,7 +404,7 @@
                                 <p class="social-media-text footer__text">Nguyễn Hoàng
                                 </p>
                                 <div class="social-media-icon">
-                                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                    <a href="#"><i class="fab fa-facebook-f facebook"></i></a>
                                     <a href="#"><i class="fab fa-instagram"></i></a>
                                     <a href="#"><i class="fab fa-youtube"></i></a>
                                 </div>
@@ -391,6 +424,10 @@
         <!-- ======================================end footer==================================== -->
 
     </div>
+
+
+    <script src="{{url('public/assets/js/jquery-3.5.1.min.js')}}"></script>
+    <script src="{{url('public/assets/js/chatbot.js')}}"></script>
     <script src="{{url('public/assets/js/flag.js')}}"></script>
     <script src="{{url('public/assets/js/scroll.js')}}"></script>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
@@ -418,12 +455,12 @@
     
     
 
-    <script SameSite="None; Secure" src="https://static.landbot.io/landbot-3/landbot-3.0.0.js"></script>
+    <!-- <script SameSite="None; Secure" src="https://static.landbot.io/landbot-3/landbot-3.0.0.js"></script>
     <script>
     var myLandbot = new Landbot.Livechat({
         configUrl: 'https://chats.landbot.io/v3/H-755063-E077DJ6CRREG4QN7/index.json',
     });
-    </script>
+    </script> -->
 
 
     <!--Start of Tawk.to Script-->

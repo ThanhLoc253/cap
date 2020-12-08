@@ -53,12 +53,26 @@ class FrontController extends Controller {
             ->where('a.Status',1)
             ->where('b.Alias',$slug)
             ->selectRaw('a.Alias, a.Name, a.Images, a.SmallDescription, a.created_at')
+            ->orderBy('a.RowID', 'DESC')
             // ->where('a.RowIDCat',2)
             ->paginate(4);
 
             return view('front.news.cat',compact('newsCat','listNews'));
         }
 
+        // $timeLineList = Page::where('Status',1)->where('Alias',$slug)->first();
+        //     if(isset($timeLineList)&&$timeLineList != null){
+        //         $listTimeLine = DB::table('news as a')
+        //         ->join('news_cat as b','a.RowIDCat','=','b.RowID')
+        //         ->where('a.Status',1)
+        //         ->where('b.Alias',$slug)
+        //         ->selectRaw('a.Name, a.SmallDescription, a.created_at, a.Description')
+        //         ->orderBy('a.RowID', 'DESC')
+        //         ->where('a.RowIDCat',1)
+        //         ->paginate(4);
+    
+        //         return view('front.news.timeline',compact('timeLineList','listTimeLine'));
+        //     }        
         
     }
 
@@ -77,11 +91,43 @@ class FrontController extends Controller {
         ->where('a.Status',1)
         ->selectRaw('a.Alias, a.Name, a.Images')
         ->where('a.RowIDCat',2)
-        ->limit(4)->get();
+        ->orderBy('a.RowID', 'DESC')
+        ->limit(4)->Offset(1)->get();
+
+        // $timeLineList = DB::table('news as a')
+        // ->join('news_cat as b','a.RowIDCat','=','b.RowID')
+        // ->where('a.Status',1)
+        // ->where('a.Alias',$slug)
+        // ->selectRaw('a.Alias, a.Name, a.created_at, a.Description, b.Name as TimelineName, b.Alias as TimelineAlias')
+        // ->paginate(4);
+
+        // $listTimeLine = DB::table('news as a')
+        // ->join('news_cat as b','a.RowIDCat','=','b.RowID')
+        // ->where('a.Status',1)
+        // ->selectRaw('a.Name, a.created_at, a.Description')
+        // ->orderBy('a.RowID', 'DESC')
+        // ->where('a.RowIDCat',1)
+        // ->paginate(4);
+
         return view('front.news.newsitem',compact('newsitem','AddNews'));
     }
 
+    // public function timelinelist(Request $request){
+    //     $timeLineList = Page::where('Status',1)->where('Alias','time-line')->first();
+    //     if(isset($timeLineList)&&$timeLineList != null){
+    //         $listTimeLine = DB::table('news as a')
+    //         ->join('news_cat as b','a.RowIDCat','=','b.RowID')
+    //         ->where('a.Status',1)
+    //         ->selectRaw('a.Name, a.SmallDescription, a.created_at, a.Description')
+    //         ->orderBy('a.RowID', 'DESC')
+    //         ->where('a.RowIDCat',1)
+    //         // ->paginate(4);
+    //         ->paginate(4);
 
+    //         return view('front.news.timeline',compact('timeLineList','listTimeLine'));
+    //     }
+    
+    // }
 
     public function news(){
 
@@ -92,30 +138,40 @@ class FrontController extends Controller {
         ->where('a.Status',1)
         ->selectRaw('a.Alias, a.Name, a.Images, a.SmallDescription')
         ->where('a.RowIDCat',2)
-        ->limit(4)->get();
+        ->orderBy('a.RowID', 'DESC')
+        ->limit(4)->Offset(3)->get();
 
         $HomeNews1 = DB::table('news as a')
         ->join('news_cat as b','a.RowIDCat','=','b.RowID')
         ->where('a.Status',1)
         ->selectRaw('a.Alias, a.Name, a.Images, a.SmallDescription')
         ->where('a.RowIDCat',2)
+        ->orderBy('a.RowID', 'DESC')
         ->limit(1)->get();
+        
 
         $HomeNews2 = DB::table('news as a')
         ->join('news_cat as b','a.RowIDCat','=','b.RowID')
         ->where('a.Status',1)
         ->selectRaw('a.Alias, a.Name, a.Images, a.SmallDescription')
         ->where('a.RowIDCat',2)
-        ->paginate(2);
+        ->orderBy('a.RowID', 'DESC')
+        ->limit(2)->Offset(1)->get();
 
         $Timeline = DB::table('news as a')
         ->join('news_cat as b','a.RowIDCat','=','b.RowID')
         ->where('a.Status',1)
         ->selectRaw('a.Alias, a.Name, a.Images, a.Description, a.created_at')
         ->where('a.RowIDCat',1)
-        ->paginate(2);
+        ->orderBy('a.RowID', 'DESC')
+        ->paginate(3);
 
-        return view('front.news.news',compact('news','HomeNews','HomeNews1','HomeNews2','Timeline'));
+        $listpatient = DB::table('patient as a')
+        ->selectRaw('a.fullname, a.Status, a.Age, a.Location, a.quequan')
+        ->orderBy('a.RowID', 'DESC')
+        ->get();
+
+        return view('front.news.news',compact('news','HomeNews','HomeNews1','HomeNews2','Timeline','listpatient'));
     
 
 
