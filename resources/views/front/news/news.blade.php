@@ -1,7 +1,7 @@
 @extends('front.template.master')
 
-@section('title', 'Danh sách tin')
-@section('heading','Danh sách tin')
+@section('title', 'Thống kê')
+@section('heading','Thống kê')
 @section($news->Alias,'active')
 @section('content')
 
