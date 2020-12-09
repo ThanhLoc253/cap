@@ -160,7 +160,7 @@
                                 <img src="{{url('public/assets/img/Plain_Yellow_Star.png')}}" alt="">
                             </div>
                         </div>
-                        <div class="header__navbar-logo"><a href="{{url('/')}}">Corona</a></div>
+                        <div class="header__navbar-logo"><a href="{{url('/')}}">CWC-19</a></div>
                     </div>
                     <ul class="header__navbar-menu">
                       @if(isset($Page) && count($Page)>0)
@@ -353,7 +353,7 @@
                                         <img src="{{url('public/assets/img/Plain_Yellow_Star.png')}}" alt="">
                                     </div>
                                 </div>
-                                <div class="header__navbar-logo"><a href="#">Corona</a></div>
+                                <div class="header__navbar-logo"><a href="{{url('/')}}">CWC-19</a></div>
                             </div>
                             <p class="footer__text">Cách tốt nhất để ngăn chặn và làm chậm quá trình lây truyền là được thông báo đầy đủ về vi rút COVID-19. Bảo vệ bản thân và những người khác khỏi nhiễm trùng bằng cách rửa tay.
                             </p>
@@ -383,7 +383,7 @@
                                 </div>
                             </div>
                             <div class="social-media">
-                                <p class="social-media-text footer__text">Nguyễn Thành Lộc
+                                <p class="social-media-text footer__text">Võ Thành Lộc
                                 </p>
                                 <div class="social-media-icon">
                                     <a href="#"><i class="fab fa-facebook-f facebook"></i></a>

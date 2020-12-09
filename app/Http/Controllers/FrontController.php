@@ -131,7 +131,7 @@ class FrontController extends Controller {
 
     public function news(){
 
-        $news = Page::where('Status',1)->where('Alias','tin-tuc')->first();
+        $news = Page::where('Status',1)->where('Alias','thong-ke')->first();
 
         $HomeNews = DB::table('news as a')
         ->join('news_cat as b','a.RowIDCat','=','b.RowID')

@@ -28,7 +28,7 @@ Route::get('/logout', 'UserController@getLogout');
 
 Route::get('/', 'FrontController@home');
 Route::get('/trang-chu', 'FrontController@home');
-Route::get('/tin-tuc', 'FrontController@news');
+Route::get('/thong-ke', 'FrontController@news');
 Route::get('/ban-do-dich', 'FrontController@getmaps');
 // Route::get('/time-line', 'FrontController@timelinelist');
 
