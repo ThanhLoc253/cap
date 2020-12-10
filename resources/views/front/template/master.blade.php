@@ -227,6 +227,9 @@
                         <div class="msg-header">
                             <p>Xin chào, tôi có thể giúp gì?</p>
                         </div>
+                        <button id="start-btn" title="Start" class="start-btn"><i class="fas fa-microphone"></i></button>
+                        <!-- <button id="start-btn" title="Start" class="stop-btn"><i class="fas fa-microphone-slash"></i></button> -->
+                        <p id="instructions" class="hidden">Press the Start button</p>
                     </div>
                 </div>
                 <div class="typing-field">
@@ -361,7 +364,7 @@
                     </div>
                     <div class="grid__column-4">
                         <div class="difine">
-                            <h1 class="define__heading">Contact Us</h1>
+                            <h1 class="define__heading">Liên hệ</h1>
                             <p class="footer__text">254 Nguyễn Văn Linh, Thanh Khê, Đà Nẵng
                             </p>
                             <p class="footer__text">Phone: +84535353535
@@ -372,7 +375,7 @@
                     </div>
                     <div class="grid__column-4">
                         <div class="difine">
-                            <h1 class="define__heading">Our team</h1>
+                            <h1 class="define__heading">Về chúng tôi</h1>
                             <div class="social-media">
                                 <p class="social-media-text footer__text">Lê Hoài Nam
                                 </p>
