@@ -213,7 +213,7 @@
         <!-- chatbot  -->
 
         <div class="chat_icon">
-            <i class="fas fa-comments"></i>
+        <i class="fas fa-shield-virus"></i>
         </div>
 
         <div class="chat_box">

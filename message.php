@@ -1,7 +1,7 @@
 
 <?php
 // connecting to database
-$conn = mysqli_connect("localhost", "root", "", "db_webcovid3") or die("Database Error");
+$conn = mysqli_connect("localhost", "root", "", "db_webcovid") or die("Database Error");
 
 // getting user message through ajax
 $getMesg = mysqli_real_escape_string($conn, $_POST['text']);
