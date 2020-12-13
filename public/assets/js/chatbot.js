@@ -18,7 +18,7 @@ $(document).ready(function() {
             type: 'POST',
             data: 'text=' + $value,
             success: function(result) {
-                $replay = '<div class="bot-inbox inbox"><div class="icon"><i class="fas fa-user"></i></div><div class="msg-header"><p>' + result + '</p></div></div>';
+                $replay = '<div class="bot-inbox inbox"><div class="icon"><i class="fas fa-robot"></i></div><div class="msg-header"><p>' + result + '</p></div></div>';
                 $(".form").append($replay);
 
                 $(".form").scrollTop($(".form")[0].scrollHeight);
@@ -42,7 +42,7 @@ $("#data").keypress(function(event) {
             type: 'POST',
             data: 'text=' + $value,
             success: function(result) {
-                $replay = '<div class="bot-inbox inbox"><div class="icon"><i class="fas fa-user"></i></div><div class="msg-header"><p>' + result + '</p></div></div>';
+                $replay = '<div class="bot-inbox inbox"><div class="icon"><i class="fas fa-robot"></i></div><div class="msg-header"><p>' + result + '</p></div></div>';
                 $(".form").append($replay);
 
                 $(".form").scrollTop($(".form")[0].scrollHeight);

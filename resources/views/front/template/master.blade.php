@@ -222,7 +222,8 @@
                 <div class="form">
                     <div class="bot-inbox inbox">
                         <div class="icon">
-                            <i class="fas fa-user"></i>
+                            <!-- <i class="fas fa-user"></i> -->
+                            <i class="fas fa-robot"></i>
                         </div>
                         <div class="msg-header">
                             <p>Xin chào, tôi có thể giúp gì?</p>
