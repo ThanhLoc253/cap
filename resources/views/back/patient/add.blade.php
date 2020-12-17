@@ -30,6 +30,10 @@
                     <label for="exampleInputEmail1">Ghi Chú<span class="color_red">*</span></label>
                     <input type="text" class="form-control" name="ghichu">
                 </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Tác Giả <span class="color_red">*</span></label>
+                    <input type="text" class="form-control" name="level">
+                  </div>
                 <div class="card-footer">
                     <button type="submit" class="btn btn-primary">Thêm</button>
                 </div>

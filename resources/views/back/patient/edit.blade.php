@@ -42,6 +42,10 @@
                     <label for="exampleInputSdt1">Ghi Chú<span class="color_red">*</span></label>
                     <input type="text" class="form-control" name="ghichu" value="{{$Patient->ghichu}}">
                 </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Tác Giả</label>
+                    <input type="text" class="form-control" name="level" value="{{$Patient->level}}" disabled="">
+                  </div>
             </div>
             <!-- /.card-body -->
             <div class="card-footer">

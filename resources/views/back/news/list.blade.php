@@ -18,7 +18,7 @@
                         <th>Thuộc danh mục</th>
                         <th>Tên tin tức</th>
                         <th>Ảnh đại diện</th>
-
+                        <th>Tác Giả</th>
                         <th class="text_align_center"><i class="fas fa-user-cog"></i></th>
                     </tr>
                 </thead>
@@ -32,7 +32,7 @@
                         <td>
                             <img src="{{url('images/news/'.$v->Images)}}" width='100px' alt="Avatar">
                         </td>
-
+                        <td>{{$v->name}}</td>
                         <td>
                             @if($v->Status==1)
                                 Bật

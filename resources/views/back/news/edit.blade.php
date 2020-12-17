@@ -46,6 +46,11 @@
                     <label for="exampleInputHvT1">Đường dẫn</label>
                     <input type="text" class="form-control" name="Alias" id="slug" value="{{$News->Alias}}">
                 </div>
+                
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Tác Giả</label>
+                    <input type="text" class="form-control" name="level" value="{{$News->level}}" disabled="">
+                </div>
 
                 <div class="form-group">
                     <label for="exampleInputHvT1">Tên meta title</label>

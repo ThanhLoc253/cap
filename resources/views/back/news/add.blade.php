@@ -36,8 +36,6 @@
                   </select>
                 </div>
                 
-               
-
                 <div class="form-group">
                     <label for="exampleInputHvT1">Tên tin tức<span class="color_red">*</span></label>
                     <input type="text" class="form-control" name="Name" id="title" onkeyup="ChangeToSlug();">
@@ -46,6 +44,10 @@
                     <label for="exampleInputHvT1">Đường dẫn</label>
                     <input type="text" class="form-control" name="Alias" id="slug">
                 </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Tác Giả <span class="color_red">*</span></label>
+                    <input type="text" class="form-control" name="level">
+                  </div>
                 <div class="form-group">
                     <label for="exampleInputHvT1">Tên meta title</label>
                     <textarea name="MetaTitle" rows="2" class="form-control"></textarea>

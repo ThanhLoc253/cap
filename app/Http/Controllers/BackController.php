@@ -254,13 +254,16 @@ class BackController extends Controller {
     // patient------------------------------
                                                                     
     public function patient_list() {
-        $Patient = Patient::get();
+        // $Patient = Patient::get();
+        $Patient = DB::table('patient as a') 
+        -> join('users_level as b', 'a.level', '=', 'b.idLevel') 
+        -> selectRaw('a.RowID, a.fullname,a.Status, a.Age, a.Location, a.quequan, a.ghichu, b.name') -> get();     
             return view('back.patient.list', compact('Patient'));
     }
                                                                
     public function patient_edit(Request $request, $id) {
         $Patient = Patient::find($id);
-            return view('back.patient.edit', compact('Patient'));
+        return view('back.patient.edit', compact('Patient'));
     }
     
     public function patient_edit_post(Request $request, $id) {
@@ -295,7 +298,7 @@ class BackController extends Controller {
     }
                         
     public function patient_add() {
-        $Patient = Patient::where('Status', 2) -> get();
+        $Patient = Patient::where('Status', 2) -> get(); 
             return view('back.patient.add', compact('Patient'));
     }
                                                                            
@@ -310,6 +313,7 @@ class BackController extends Controller {
             $Patient -> Age = $request -> Age;
             $Patient -> Location = $request -> Location; 
             $Patient -> ghichu = $request -> ghichu; 
+            $Patient -> level = $request -> level;
             $Flag = $Patient -> save();
 
             if ($Flag == true) {
@@ -455,8 +459,9 @@ class BackController extends Controller {
     // news management-------------------------------------------------//
     public function news_list(){
         $News = DB::table('news as a')
-        ->join('news_cat as b', 'a.RowIDCat', '=', 'b.RowID')
-        ->selectRaw('a.*, b.Name as CategoryName')
+        ->join('news_cat as b',  'a.RowIDCat', '=', 'b.RowID')
+        ->join('users_level as c','a.level','=','c.idLevel')
+        ->selectRaw('a.*, b.Name as CategoryName, c.name')
         ->orderBy('a.RowID', 'DESC')
         ->get(); 
         return view('back.news.list', compact('News'));
@@ -470,12 +475,13 @@ class BackController extends Controller {
 
     public function news_add(Request $request){
         if ($request->Name == '' || $request->Description == '') {
-            return redirect('admin/news/edit/')->with(['flash_level' => 'danger', 'flash_message' => 'Vui lòng điền vào chỗ có dấu *']);
+            return redirect('admin/news/add/')->with(['flash_level' => 'danger', 'flash_message' => 'Vui lòng điền vào chỗ có dấu *']);
         }
         $News = new News;
         $News->RowIDCat = $request->RowIDCat;
         $News->Status = $request->Status;
         $News->Name = $request->Name;
+        $News->level = $request->level;
         $News->Alias = $request->Alias;
         $News->MetaTitle = $request->MetaTitle;
         $News->MetaDescription = $request->MetaDescription;
@@ -583,7 +589,7 @@ class BackController extends Controller {
 
         $Flag = $News -> save();
         if ($Flag == true) {
-            return redirect('admin/news/edit/'.$RowID)->with(['flash_level' => 'success', 'flash_message' => 'Chỉnh Sửa tin tức thành công']);
+            return redirect('admin/news/list')->with(['flash_level' => 'success', 'flash_message' => 'Chỉnh Sửa tin tức thành công']);
         } else {
             return redirect('admin/news/edit/'.$RowID)->with(['flash_level' => 'danger', 'flash_message' => 'Chỉnh Sửa tin tức thất bại']);
         }

@@ -20,6 +20,7 @@
                         <th class="text_align_center">Age</th>
                         <th class="text_align_center">Location</th>
                         <th class="text_align_center">Ghi Chú</th>
+                        <th class="text_align_center">Tác Giả</th>
                         <th class="text_align_center"><i class="fas fa-user-cog"></i></th>
                     </tr>
                 </thead>
@@ -29,12 +30,16 @@
                         <td class="text_align_center">{{$k+1}}</td>
                         <td>{{$v->fullname}}</td>
                         <td class="text_align_center">
-                            @if($v->Status ==1) Đang Điều Trị @elseif($v->Status ==2) Đã Khỏi Bệnh @else Tử Vong @endif
+                            @if($v->Status ==1) Đang Điều Trị 
+                            @elseif($v->Status ==2) Đã Khỏi Bệnh 
+                            @else Tử Vong 
+                            @endif
                         </td>
                         <td class="text_align_center">{{$v->quequan}}</td>
                         <td class="text_align_center">{{$v->Age}}</td>
                         <td class="text_align_center">{{$v->Location}}</td>
                         <td class="text_align_center">{{$v->ghichu}}</td>
+                        <td class="text_align_center">{{$v->name}}</td>
                         <td class="text_align_center">
                             <a href="{{url('admin/patient/edit/'.$v->RowID)}}" title="Chỉnh Sửa" class="ad_button">
                                 <i class="fas fa-user-edit"></i>
