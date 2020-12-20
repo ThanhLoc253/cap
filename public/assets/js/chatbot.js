@@ -100,6 +100,14 @@ $("#send-btn").on("click", function() {
     Content = '';
 });
 
+$("#data").keypress(function(event) {
+    if (event.keyCode == 13 || event.which == 13) {
+        event.preventDefault();
+        Content = '';
+    }
+
+});
+
 Textbox.on('input', function() {
     Content = $(this).val();
 })
