@@ -228,7 +228,11 @@
                         </div>
                         <div class="msg-header">
                             <p>Xin chào, tôi có thể giúp gì?</p>
-                        </div>
+                            <!-- <p>Xin chào, bạn muốn dùng ngôn ngữ gì?</p>
+                            <p>Hi, what language would you like t use?</p>
+                            <input class="option" type="button" value="Tiếng Việt">
+                            <input class="option3" type="button" value="English"> -->
+                        </div>o
                         <button id="start-btn" title="Start" class="start-btn"><i class="fas fa-microphone"></i></button>
                         <!-- <button id="start-btn" title="Start" class="stop-btn"><i class="fas fa-microphone-slash"></i></button> -->
                         <p id="instructions" class="hidden">Press the Start button</p>

@@ -40,10 +40,40 @@ function fetchData(country) {
     (dates = []),
     (formatedDates = []);
 
+    // (todaycases_list = []),
+    // (todayrecovered_list = []),
+    // (todaydeaths_list = []);
+
   var requestOptions = {
     method: "GET",
     redirect: "follow",
   };
+
+
+// ----------------------------------------remake------------------------------------------ 
+  // const api_fetch = async (country) => {
+  //   await fetch(
+  //     "https://corona.lmao.ninja/v2/countries/" + country,
+  //     requestOptions
+  //   )
+  //     .then((res) => {
+  //       return res.json();
+  //     })
+  //     .then((data) => {
+  //       console.log(data);
+
+  //       cases_list.push(data.cases);
+  //       recovered_list.push(data.recovered);
+  //       deaths_list.push(data.deaths);
+        
+  //       todaycases_list.push(data.todayCases);
+  //       todayrecovered_list.push(data.todayRecovered);
+  //       todaydeaths_list.push(data.todayDeaths);
+
+  //     });
+
+    
+  // ----------------------------------------remake------------------------------------------ 
 
   const api_fetch = async (country) => {
     await fetch(
@@ -98,13 +128,14 @@ function fetchData(country) {
 
 fetchData(user_country);
 
-// UPDATE UI FUNCTION
+// UPDATE UI FUNCTION--------------------------------------------------------------------------------------------------------
 function updateUI() {
   updateStats();
   axesLinearChart();
 }
 
 function updateStats() {
+  // cho fix --------------------------------------------------------------------------------------------------------------------
   const total_cases = cases_list[cases_list.length - 1];
   const new_confirmed_cases = total_cases - cases_list[cases_list.length - 2];
 
@@ -122,6 +153,20 @@ function updateStats() {
   new_recovered_element.innerHTML = `+${new_recovered_cases}`;
   deaths_element.innerHTML = total_deaths;
   new_deaths_element.innerHTML = `+${new_deaths_cases}`;
+  // cho fix ---------------------------------------------------------------------------------------------------------------------- 
+
+  // const total_cases = cases_list;
+
+  // const total_recovered = recovered_list;
+
+  // const total_deaths = deaths_list;
+  // country_name_element.innerHTML = user_country;
+  // total_cases_element.innerHTML = total_cases;
+  // new_cases_element.innerHTML = `+${todaycases_list}`;
+  // recovered_element.innerHTML = total_recovered;
+  // new_recovered_element.innerHTML = `+${todayrecovered_list}`;
+  // deaths_element.innerHTML = total_deaths;
+  // new_deaths_element.innerHTML = `+${todaydeaths_list}`;
 
   // format dates
   dates.forEach((date) => {

@@ -22,7 +22,7 @@ if(mysqli_num_rows($run_query) > 0){
 
     echo $replay;
 }else{
-    echo "Xin lỗi tôi không hiểu câu hỏi của bạn!";
+    echo "Xin lỗi tôi không hiểu câu hỏi của bạn! <br> Câu hỏi thường gặp:<br><b>Covid-19 là gì</b><br><b>Cách virus lây lan</b><br><b>Cách phòng tránh</b><br><b>Các triệu chứng</b><br><b>Đường dây nóng</b><br><b>Lịch trình của bệnh nhân</b>";
 }
 
 ?>
